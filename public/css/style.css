@@ -1,0 +1,17 @@
+h1 {
+    margin: 0 auto;
+    padding: 30px 0;
+    background-color: #eee;
+    color: whitesmoke;
+}
+
+.well {
+    background-color: #CCC;
+    padding: 20px;
+}
+
+#bg-home {
+    height: 100vh;
+    background: url(../images/pixambo-objects-disc.jpg);
+    background-size: cover;
+}
