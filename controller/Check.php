@@ -8,16 +8,16 @@ class Check
     /**
      * @var array list of accesible tables
      */
-    private $tables = array('db_movies', 'tvShows');
+    private static $tables = array('db_movies', 'tvShows');
 
     /**
-     * This method check tables for database acces
+     * This method check tables exist for database acces
      * @param string $tableInput the table to check
      * @return boolean
      */
-    public function checkTable($tableInput)
+    public static function checkTable($tableInput)
     {
-        foreach ($this->tables as $table) {
+        foreach (self::$tables as $table) {
             if ($table === $tableInput) {
                 return true;
             }

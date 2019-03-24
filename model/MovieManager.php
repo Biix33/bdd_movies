@@ -1,5 +1,5 @@
 <?php
-require_once 'model/Manager.php';
+require_once 'DbManager.php';
 
 class MovieManager extends Dbconfig
 {
@@ -12,7 +12,8 @@ class MovieManager extends Dbconfig
 
     public function getMovies()
     {
-        return parent::dbConnect()->query('SELECT * FROM ' . $this->table . ' ORDER BY id LIMIT 0, 15');
+        $q = parent::dbConnect()->query('SELECT * FROM ' . $this->table . ' ORDER BY id LIMIT 0, 15');
+        return $q->fetchAll();
     }
 
     public function count()
@@ -28,7 +29,7 @@ class MovieManager extends Dbconfig
         return $movie;
     }
 
-    public function addMovie($title, $noDvd)
+    public function addMovie($title, $noDvd, $year = '', $genre = '', $duration = '', $link_allocine = '')
     {
         if (empty($title)) {
             throw new Exception('Merci de rajouter au moins un titre pour votre film');
