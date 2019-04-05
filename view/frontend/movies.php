@@ -1,19 +1,6 @@
-<?php $title = 'Base de données films';?>
-
-<?php ob_start();
-
-$videosParPage = 15;
-$nbPages = ceil($nbMovies / $videosParPage);
-
-if (isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0) {
-    $_GET['page'] = intval($_GET['page']);
-    $currentpage = $_GET['page'];
-} else {
-    $currentpage = 1;
-}
-
-$depart = ($currentpage - 1) * $videosParPage;
-
+<?php
+$title = 'Base de données films';
+ob_start();
 ?>
 
 <table class="table table-striped table-responsive">
@@ -29,7 +16,7 @@ $depart = ($currentpage - 1) * $videosParPage;
 
         <?php foreach ($movies as $movie): ?>
         <tr>
-            <td><a href="index.php?db=<?=$_GET['db'];?>&action=movie&id=<?=$movie['id'];?>"><?=$movie['title']?></a>
+            <td><a href="index.php?db=<?=$_GET['db']?>&action=getmovie&id=<?=$movie['id']?>"><?=$movie['title']?></a>
             </td>
             <td style="text-align: center"><?=$movie['no_dvd']?></td>
             <td><?=$movie['year']?></td>
@@ -39,9 +26,13 @@ $depart = ($currentpage - 1) * $videosParPage;
     </tbody>
 </table>
 
-<?php for ($i = 1; $i < $nbPages; $i++): ?>
-<a href="index.php?db=<?=$_GET['db']?>&page=<?=$i?>"><?=$i?></a>
-<?php endfor?>
+<ul class="pagination pagination-sm">
+    <?php for ($i = 1; $i < $nbPages; $i++): ?>
+    <li class="page-item">
+        <a href="index.php?db=<?=$_GET['db']?>&page=<?=$i?>" class="page-link"><?=$i?></a>
+    </li>
+    <?php endfor?>
+</ul>
 
 <?php $content = ob_get_clean();?>
 

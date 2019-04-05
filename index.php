@@ -1,20 +1,21 @@
 <?php
-require_once 'controller/controller.php';
+require_once 'Controller/MovieController.php';
+use DBMOVIE\Controller\MovieController;
 
 try {
     if (isset($_GET['db'])) {
         $db = strip_tags($_GET['db']);
         if (isset($_GET['action'])) {
             $action = strip_tags($_GET['action']);
-            if ($action === 'movie') {
+            if ($action === 'getmovie') {
                 if (isset($_GET['id'])) {
                     $id = strip_tags($_GET['id']);
-                    getMovie($db, $id);
+                    MovieController::getMovie($db, $id);
                     if (isset($_POST['update'])) {
                         if (empty($_POST['dvd_title'])) {
-                            updateMovieLink($db, $id, $_POST['link_allocine']);
+                            MovieController::updateMovieLink($db, $id, $_POST['link_allocine']);
                         } else {
-                            updateMovie(
+                            MovieController::updateMovie(
                                 $db,
                                 $id,
                                 htmlspecialchars($_POST['dvd_title']),
@@ -35,9 +36,12 @@ try {
             }
         } elseif (isset($_GET['search'])) {
             $q = strip_tags($_GET['search']);
-            search($db, $q);
+            MovieController::search($db, $q);
+        } elseif (isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] > 0) {
+            $page = intval($_GET['page']);
+            MovieController::getMoviesOnPage($db, $page);
         } else {
-            getMovies($db);
+            MovieController::getMoviesOnPage($db);
         }
     } else {
         require_once 'view/home.php';

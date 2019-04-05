@@ -1,0 +1,4 @@
+Options +FollwSymlinks
+RewriteEngine On
+
+RewriteRule ^index.html$ /index.php
