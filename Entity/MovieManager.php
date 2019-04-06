@@ -8,11 +8,11 @@ require_once 'Model/Movie.php';
 
 class MovieManager extends Database
 {
-    private static $tables = ['db_movies', 'tvShows'];
+    const TABLE = ['db_movies', 'tvShows'];
 
     private static function tableExist($tableToMatch)
     {
-        foreach (self::$tables as $table) {
+        foreach (self::TABLE as $table) {
             if ($table === $tableToMatch) {
                 return true;
             }
@@ -30,7 +30,8 @@ class MovieManager extends Database
         $q->bindValue(1, $min, PDO::PARAM_INT);
         $q->bindValue(2, $max, PDO::PARAM_INT);
         $q->execute();
-        return $q->fetchAll();
+        $data = $q->fetchAll();
+        return self::map($data);
     }
 
     public static function count($table)
@@ -50,8 +51,9 @@ class MovieManager extends Database
         $q = parent::getPDO()->prepare($sql);
         $q->bindValue(1, $id, PDO::PARAM_INT);
         $q->execute();
-        $q->setFetchMode(PDO::FETCH_CLASS, Movie::class);
-        return $q->fetch();
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $data = $q->fetch();
+        return Movie::hydrate($data);
     }
 
     public static function addMovie($table, Movie $movie)
@@ -86,24 +88,22 @@ class MovieManager extends Database
         }
     }
 
-    /*public static function updateMovieLink($movieID, $newLink)
-    {
-        $updateMovieLink = parent::dbConnect()->prepare('UPDATE ' . $this->table . ' SET link_allocine = :newlink WHERE id = :movieid');
-        $updateMovieLink->execute(array(
-            'newlink' => $newLink,
-            'movieid' => $movieID,
-        ));
-
-        if ($updateMovieLink === false) {
-            throw new Exception('Une erreur c\'est produite lors de la mise à jour');
-        }
-    }*/
-
     public static function searchTitle($table, $searchWord)
     {
         if (self::tableExist($table)) {
             $sql = "SELECT id, title, no_dvd, year,  genre, duration, link_allocine FROM $table WHERE title LIKE '%'$searchWord'%' ORDER BY id DESC";
         }
         return parent::getPDO()->query($sql);
+    }
+
+    private static function map($data)
+    {
+        $movies = [];
+
+        foreach ($data as $row) {
+            $movies[] = Movie::hydrate($row);
+        }
+
+        return $movies;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace DBMOVIE\Model;
 
 class Movie
@@ -12,71 +13,119 @@ class Movie
     private $link_allocine = null;
 
     // public function __construct($title, $dvdNum) {
-        
     //     $this->setTitle($title);
     //     $this->setNumDvd($dvdNum);
     // }
 
-    public function setTitle($title) {
-        if (empty($title) || empty($dvdNum)) {
-            throw new InvalidArgumentExcption("Title or dvd num can't be empty");
+    public static function hydrate(array $data)
+    {
+        $movie = new Movie();
+        $movie->setId($data['id'])
+            ->setTitle($data['title'])
+            ->setNumDvd($data['no_dvd'])
+            ->setYear($data['year'])
+            ->setGenre($data['genre'])
+            ->setDuration($data['duration'])
+            ->setLinkAllocine($data['link_allocine']);
+        return $movie;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setTitle($title)
+    {
+        if (empty($title)) {
+            throw new InvalidArgumentExcption("Title can't be empty");
         }
         $this->title = $title;
+        return $this;
     }
 
-    public function setNumDvd($no_dvd) {
+    public function setNumDvd($no_dvd)
+    {
         if (empty($no_dvd)) {
-            throw new InvalidArgumentExcption("Title or dvd num can't be empty");
+            throw new InvalidArgumentExcption("Dvd num can't be empty");
         }
         $this->no_dvd = $no_dvd;
+        return $this;
     }
 
-    public function setYear($year) {
+    public function setYear($year)
+    {
+        $year = intval($year);
         if (empty($year) || !is_numeric($year)) {
             throw new InvalidArgumentExcption("Year cannot be null or a string");
         }
         $this->year = $year;
+        return $this;
     }
 
-    public function setGenre($genre) {
-        if (empty($genre) || !is_numeric($genre)) {
+    public function setGenre($genre)
+    {
+        if (empty($genre) || is_numeric($genre)) {
             throw new InvalidArgumentExcption("Genre cannot be null or a string");
         }
         $this->genre = $genre;
+        return $this;
     }
 
-    public function setDuration($duration) {
+    public function setDuration($duration)
+    {
+        $duration = intval($duration);
         if (empty($duration) || !is_numeric($duration)) {
             throw new InvalidArgumentExcption("Duration cannot be null or a string");
         }
         $this->duration = $duration;
+        return $this;
     }
 
-    public function getId() {
+    /**
+     * @param null $link_allocine
+     */
+    public function setLinkAllocine($link_allocine)
+    {
+        $this->link_allocine = $link_allocine;
+    }
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
-    public function getNoDvd() {
+    public function getNoDvd()
+    {
         return $this->no_dvd;
     }
 
-    public function getYear() {
+    public function getYear()
+    {
         return $this->year;
     }
 
-    public function getGenre() {
+    public function getGenre()
+    {
         return $this->genre;
     }
 
-    public function getDuration() {
+    public function getDuration()
+    {
         return $this->duration;
     }
 
-    public function getLink() {
+    public function getLink()
+    {
         return $this->link_allocine;
     }
 }

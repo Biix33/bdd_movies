@@ -16,11 +16,11 @@ ob_start();
 
         <?php foreach ($movies as $movie): ?>
         <tr>
-            <td><a href="index.php?db=<?=$_GET['db']?>&action=getmovie&id=<?=$movie['id']?>"><?=$movie['title']?></a>
+            <td><a href="index.php?db=<?=$_GET['db']?>&action=getmovie&id=<?=$movie->getId()?>"><?=$movie->getTitle()?></a>
             </td>
-            <td style="text-align: center"><?=$movie['no_dvd']?></td>
-            <td><?=$movie['year']?></td>
-            <td><?=$movie['genre']?></td>
+            <td style="text-align: center"><?=$movie->getNoDvd()?></td>
+            <td><?=$movie->getYear()?></td>
+            <td><?=$movie->getGenre()?></td>
         </tr>
         <?php endforeach?>
     </tbody>

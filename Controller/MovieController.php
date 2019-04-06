@@ -19,7 +19,6 @@ class MovieController {
     public static function getMovie($table, int $id)
     {
         $movie = MovieManager::getMovie($table, $id);
-         
         require_once 'view/frontend/movieDetails.php';
     }
 
