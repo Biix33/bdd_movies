@@ -73,16 +73,17 @@ class MovieManager extends Database
     public static function updateMovie($table, Movie $movie)
     {
         if (self::tableExist($table)) {
-            $sql = 'UPDATE ' . $table . ' SET title = :newtitle, no_dvd = :new_no_dvd, year = :newyear, genre = :newgenre, duration = :newduration,  link_allocine = :newlink WHERE id = :movieid WHERE id = :id';
+            $sql = "UPDATE $table SET title = :newtitle, no_dvd = :new_no_dvd, year = :newyear, genre = :newgenre, duration = :newduration,  link_allocine = :newlink WHERE id = :id";
         }
         $q = parent::getPDO()->prepare($sql);
-        $q->bindValue('newtitle', $movie->getTitle(), PDO::PARAM_STR);
-        $q->bindValue('new_no_dvd', $movie->getNoDvd(), PDO::PARAM_INT);
-        $q->bindValue('newyear', $movie->getYear(), PDO::PARAM_INT);
-        $q->bindValue('newgenre', $movie->getDuration(), PDO::PARAM_INT);
-        $q->bindValue('newduration', $movie->getLink(), PDO::PARAM_STR);
+        $q->bindValue(':newtitle', $movie->getTitle(), PDO::PARAM_STR);
+        $q->bindValue(':new_no_dvd', $movie->getNoDvd(), PDO::PARAM_INT);
+        $q->bindValue(':newyear', $movie->getYear(), PDO::PARAM_INT);
+        $q->bindValue(':newgenre', $movie->getGenre(), PDO::PARAM_STR);
+        $q->bindValue(':newduration', $movie->getDuration(), PDO::PARAM_INT);
+        $q->bindValue(':newlink', $movie->getLink(), PDO::PARAM_STR);
+        $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
         $q->execute();
-
         if ($q === false) {
             throw new Exception('Un erreur c\'est produite lors de la mise à jour');
         }

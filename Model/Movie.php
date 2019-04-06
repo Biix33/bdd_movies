@@ -35,6 +35,7 @@ class Movie
      */
     public function setId($id)
     {
+        $id = intval($id);
         $this->id = $id;
         return $this;
     }
@@ -50,6 +51,7 @@ class Movie
 
     public function setNumDvd($no_dvd)
     {
+        $no_dvd = intval($no_dvd);
         if (empty($no_dvd)) {
             throw new InvalidArgumentExcption("Dvd num can't be empty");
         }
@@ -60,8 +62,8 @@ class Movie
     public function setYear($year)
     {
         $year = intval($year);
-        if (empty($year) || !is_numeric($year)) {
-            throw new InvalidArgumentExcption("Year cannot be null or a string");
+        if (!is_numeric($year)) {
+            throw new InvalidArgumentExcption("Year cannot be a string");
         }
         $this->year = $year;
         return $this;
@@ -69,8 +71,8 @@ class Movie
 
     public function setGenre($genre)
     {
-        if (empty($genre) || is_numeric($genre)) {
-            throw new InvalidArgumentExcption("Genre cannot be null or a string");
+        if (is_numeric($genre)) {
+            throw new InvalidArgumentExcption("Genre cannot be null or a integer");
         }
         $this->genre = $genre;
         return $this;
@@ -79,7 +81,7 @@ class Movie
     public function setDuration($duration)
     {
         $duration = intval($duration);
-        if (empty($duration) || !is_numeric($duration)) {
+        if (!is_numeric($duration)) {
             throw new InvalidArgumentExcption("Duration cannot be null or a string");
         }
         $this->duration = $duration;

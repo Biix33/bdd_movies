@@ -12,20 +12,16 @@ try {
                     $id = strip_tags($_GET['id']);
                     MovieController::getMovie($db, $id);
                     if (isset($_POST['update'])) {
-                        if (empty($_POST['dvd_title'])) {
-                            MovieController::updateMovieLink($db, $id, $_POST['link_allocine']);
-                        } else {
-                            MovieController::updateMovie(
-                                $db,
-                                $id,
-                                htmlspecialchars($_POST['dvd_title']),
-                                htmlspecialchars($_POST['no_dvd']),
-                                htmlspecialchars($_POST['year']),
-                                htmlspecialchars($_POST['genre']),
-                                htmlspecialchars($_POST['duration']),
-                                htmlspecialchars($_POST['link_allocine'])
-                            );
-                        }
+                        $data = [
+                            'id' => $id,
+                            'title' => $_POST['dvd_title'],
+                            'no_dvd' => $_POST['no_dvd'],
+                            'year' => $_POST['year'],
+                            'genre' => $_POST['genre'],
+                            'duration' => $_POST['duration'],
+                            'link_allocine' => $_POST['link_allocine'],
+                        ];
+                        MovieController::updateMovie($db, $data);
                     }
                 }
             } elseif ($action === 'addMovie') {
