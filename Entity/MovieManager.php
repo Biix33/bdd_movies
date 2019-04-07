@@ -68,6 +68,10 @@ class MovieManager extends Database
         $q->bindValue(4, $movie->getDuration(), PDO::PARAM_INT);
         $q->bindValue(5, $movie->getLink(), PDO::PARAM_STR);
         return $q->execute();
+
+        if ($q === false) {
+            throw new Exception('Un erreur c\'est produite lors de la mise à jour');
+        }
     }
 
     public static function updateMovie($table, Movie $movie)
@@ -84,6 +88,7 @@ class MovieManager extends Database
         $q->bindValue(':newlink', $movie->getLink(), PDO::PARAM_STR);
         $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
         $q->execute();
+        
         if ($q === false) {
             throw new Exception('Un erreur c\'est produite lors de la mise à jour');
         }

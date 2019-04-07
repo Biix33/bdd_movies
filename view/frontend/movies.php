@@ -1,39 +1,10 @@
 <?php
 $title = 'Base de données films';
 ob_start();
-?>
 
-<table class="table table-striped table-responsive">
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Numéro ou Nb DVD</th>
-            <th>Année ou Saisons</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
-    <tbody>
+require_once 'view/includes/table-movies.php';
+require_once 'view/includes/pagination.php';
 
-        <?php foreach ($movies as $movie): ?>
-        <tr>
-            <td><a href="index.php?db=<?=$_GET['db']?>&action=getmovie&id=<?=$movie->getId()?>"><?=$movie->getTitle()?></a>
-            </td>
-            <td style="text-align: center"><?=$movie->getNoDvd()?></td>
-            <td><?=$movie->getYear()?></td>
-            <td><?=$movie->getGenre()?></td>
-        </tr>
-        <?php endforeach?>
-    </tbody>
-</table>
+$content = ob_get_clean();
 
-<ul class="pagination pagination-sm">
-    <?php for ($i = 1; $i < $nbPages; $i++): ?>
-    <li class="page-item">
-        <a href="index.php?db=<?=$_GET['db']?>&page=<?=$i?>" class="page-link"><?=$i?></a>
-    </li>
-    <?php endfor?>
-</ul>
-
-<?php $content = ob_get_clean();?>
-
-<?php require_once 'template.php';?>
+require_once 'view/template.php';

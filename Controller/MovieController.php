@@ -25,8 +25,9 @@ class MovieController
   require_once 'view/frontend/movieDetails.php';
  }
 
- public static function addMovie($table, $title, $no_dvd)
+ public static function addMovie($table, $data)
  {
+  $movie = Movie::hydrate($data);
   MovieManager::addMovie($table, $title, $no_dvd);
   header("Location : index.php?db=$table");
  }

@@ -1,4 +1,4 @@
-<?php $title = 'Base de données films'; ?>
+<?php $title = 'Résultats de recherche'; ?>
 
 <?php ob_start(); ?>
 

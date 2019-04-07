@@ -41,8 +41,9 @@
         </nav>
     </div>
     <div class="container">
-
-        <?=$content?>
+        <div class="row">
+            <?=$content?>
+        </div>
     </div>
 </body>
 

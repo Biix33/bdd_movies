@@ -24,7 +24,7 @@ try {
                         MovieController::updateMovie($db, $data);
                     }
                 }
-            } elseif ($action === 'addMovie') {
+            } elseif ($action === 'addmovie') {
                 addMovie($db);
                 if (isset($_POST['title']) && !empty($_POST['title'])) {
                     // je suis arreté ici dans l'ajout d'un nouveau film dans la base
@@ -40,7 +40,7 @@ try {
             MovieController::getMoviesOnPage($db);
         }
     } else {
-        require_once 'view/home.php';
+        require_once 'view/frontend/home.php';
     }
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
