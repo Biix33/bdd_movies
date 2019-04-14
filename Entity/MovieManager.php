@@ -1,6 +1,8 @@
 <?php
 namespace DBMOVIE\Entity;
+
 use DBMOVIE\Model\Movie;
+use \Exception;
 use \PDO;
 
 require_once 'Database.php';
@@ -18,13 +20,14 @@ class MovieManager extends Database
             }
         }
         unset($table);
+
         throw new Exception("No table matching");
     }
 
     public static function getMoviesPage($table, $min, $max)
     {
         if (self::tableExist($table)) {
-            $sql = 'SELECT * FROM '.$table.' ORDER BY id LIMIT ?, ?';
+            $sql = 'SELECT * FROM ' . $table . ' ORDER BY id LIMIT ?, ?';
         }
         $q = parent::getPDO()->prepare($sql);
         $q->bindValue(1, $min, PDO::PARAM_INT);
@@ -88,7 +91,7 @@ class MovieManager extends Database
         $q->bindValue(':newlink', $movie->getLink(), PDO::PARAM_STR);
         $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
         $q->execute();
-        
+
         if ($q === false) {
             throw new Exception('Un erreur c\'est produite lors de la mise à jour');
         }
@@ -97,9 +100,13 @@ class MovieManager extends Database
     public static function searchTitle($table, $searchWord)
     {
         if (self::tableExist($table)) {
-            $sql = "SELECT id, title, no_dvd, year,  genre, duration, link_allocine FROM $table WHERE title LIKE '%'$searchWord'%' ORDER BY id DESC";
+            $sql = "SELECT id, title, no_dvd, year,  genre, duration, link_allocine FROM $table WHERE title LIKE %:searchq% ORDER BY id DESC";
         }
-        return parent::getPDO()->query($sql);
+        $q = parent::getPDO()->prepare($sql);
+        $q->bindValue(':searchq', $searchWord, PDO::PARAM_STR);
+        $q->execute();
+        $data = $q->fetchAll();
+        return self::map($data);
     }
 
     private static function map($data)

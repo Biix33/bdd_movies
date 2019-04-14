@@ -1,22 +1,27 @@
+<?php
+// use DBMOVIE\Utils;
+require_once 'src/Utils.php';
+?>
 <table class="table table-striped table-responsive">
     <thead>
-    <tr>
-        <th>Titre</th>
-        <th>Numéro ou Nb DVD</th>
-        <th>Année ou Saisons</th>
-        <th>Genre</th>
-    </tr>
+        <tr>
+            <th>Titre</th>
+            <th>Numéro ou Nb DVD</th>
+            <th>Année ou Saisons</th>
+            <th>Genre</th>
+        </tr>
     </thead>
     <tbody>
 
-    <?php foreach ($movies as $movie): ?>
+        <?php foreach ($movies as $movie): ?>
         <tr>
-            <td><a href="index.php?db=<?=$_GET['db']?>&action=getmovie&id=<?=$movie->getId()?>"><?=$movie->getTitle()?></a>
+            <td><a
+                    href="<?=Utils::getUrl($_GET['db'], $movie->getId())?>"><?=$movie->getTitle()?></a>
             </td>
             <td style="text-align: center"><?=$movie->getNoDvd()?></td>
             <td><?=$movie->getYear()?></td>
             <td><?=$movie->getGenre()?></td>
         </tr>
-    <?php endforeach?>
+        <?php endforeach?>
     </tbody>
 </table>

@@ -17,12 +17,12 @@
 <body>
     <div class="container-fluid">
         <header class="jumbotron">
-            <h1 class="title text-center"><a class="btn-block" href="index.php">Welcome Media Store</a></h1>
+            <h1 class="title text-center"><a class="btn-block" href="../home">Welcome Media Store</a></h1>
         </header>
         <nav class="navbar navbar-inverse">
             <ul class="nav navbar-nav">
-                <li><a class="" href="index.php?db=db_movies">Films</a></li>
-                <li><a class="" href="index.php?db=tvShows">Séries</a></li>
+                <li><a class="" href="../films">Films</a></li>
+                <li><a class="" href="../series">Séries</a></li>
             </ul>
 
             <form action="" class="navbar-form navbar-right inline-form" method="get">

@@ -5,4 +5,4 @@
     <a href="index.php">Revenir à l'accueil</a>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>
