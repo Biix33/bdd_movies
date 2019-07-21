@@ -1,0 +1,17 @@
+{
+    "name": "byo/bdd-films",
+    "description": "Handler movies bdd",
+    "authors": [
+        {
+            "name": "Biix33",
+            "email": "ybienvenu@mail.welcome-int.xyz"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {"DBMOVIE\\": "src/"}
+    }
+}
