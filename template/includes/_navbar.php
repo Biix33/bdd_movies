@@ -13,8 +13,9 @@
             </select>
             <input type="search" name="search" placeholder="Rechercher" class="input-sm form-control">
             <button type="submit" class="btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-eye-open"></span>
-                Rechercher</button>
+                        class="glyphicon glyphicon-eye-open"></span>
+                Rechercher
+            </button>
         </div>
     </form>
 </nav>

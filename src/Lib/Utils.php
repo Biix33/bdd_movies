@@ -12,4 +12,10 @@ class Utils
         }
         return "$link/$id";
     }
+
+    public static function pagination($totalElt, $eltPerPage)
+    {
+        $nbPages = ceil(intval($totalElt) / $eltPerPage);
+        return $nbPages;
+    }
 }

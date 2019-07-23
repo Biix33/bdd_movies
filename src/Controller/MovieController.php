@@ -2,10 +2,12 @@
 
 namespace DBMOVIE\Controller;
 
+use DBMOVIE\Lib\Utils;
 use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Model\Movie;
 use DBMOVIE\View\View;
 use DBMOVIE\Lib\api_allocine_helper\AlloHelper;
+use ErrorException;
 use Exception;
 
 class MovieController
@@ -19,24 +21,12 @@ class MovieController
 
     public static function showMovies()
     {
-        $p = (!isset($_GET['p'])) ? 1 : $_GET['p'];
-        $moviesOnPage = (!isset($_GET['nbM'])) ? 15 : $_GET['nbM'];
-        $min = ($p - 1) * $moviesOnPage;
-        $movies = MovieManager::getMoviesPage($min, $moviesOnPage);
-        $nbMovies = MovieManager::count();
-        $nbPages = ceil(intval($nbMovies['count']) / $moviesOnPage);
-        /*$movies = MovieManager::findMovieWithLink();
-        $nbPages = 1;
-        foreach ($movies as $movie) {
-            $split1 = explode('=', $movie->getDescribeLink());
-            $split2 = explode('.', $split1[1]);
-            $code = $split2[0];
-            $movie->setCode($code);
-            MovieManager::updateCode($movie);
-            var_dump($movie);
-        }
-        exit;*/
-
+        $currentPage = (!isset($_GET['p'])) ? 1 : $_GET['p'];
+        $moviesPerPage = (!isset($_GET['nbM'])) ? 15 : $_GET['nbM'];
+        $min = ($currentPage - 1) * $moviesPerPage;
+        $movies = MovieManager::getMoviesPage($min, $moviesPerPage);
+        $totalMovies = MovieManager::count();
+        $nbPages = Utils::pagination($totalMovies['count'], $moviesPerPage);
         return View::render(self::TEMPLATE_PATH, 'movies', ['movies' => $movies, 'nbPages' => $nbPages]);
     }
 
@@ -90,6 +80,54 @@ class MovieController
             echo $e->getMessage();
         }
         return View::redirect("/movies/movie/$id");
+    }
+
+    /**
+     * Update movie link with allocine helper
+     */
+    public static function findLink()
+    {
+        /*$movies = MovieManager::findMovieWithLink();
+        $nbPages = 1;
+        foreach ($movies as $movie) {
+            $split1 = explode('=', $movie->getDescribeLink());
+            $split2 = explode('.', $split1[1]);
+            $code = $split2[0];
+            $movie->setCode($code);
+            MovieManager::updateCode($movie);
+            var_dump($movie);
+        }
+        exit;*/
+        $helper = new AlloHelper();
+        $movies = MovieManager::findMovieWithoutLink();
+        foreach ($movies as $movie) {
+            $results = $helper->search($movie->getTitle(), 1, 10, true, ['movie']);
+            if (isset($results['movie'])) {
+                $movie->setCode($results['movie'][0]['code']);
+                var_dump($movie);
+                MovieManager::updateCode($movie);
+            }
+        }
+        exit;
+
+        $moviesWithCode = MovieManager::findMovieWithoutLinkCodeNotNull();
+        foreach ($moviesWithCode as $item) {
+            if (!empty($item->getCode())) {
+                $foundWithCode = $helper->movie($item->getCode());
+                $item
+                    ->setTitle($item->getTitle())
+                    ->setNumDvd($item->getNoDvd())
+                    ->setYear($foundWithCode['productionYear'])
+                    ->setGenre($foundWithCode['genre'][0]['$'])
+                    ->setDuration($foundWithCode['runtime'] / 60)
+                    ->setDescribeLink($foundWithCode['link'][0]['href'])
+                    ->setCode($item->getCode());
+                var_dump($item);
+                MovieManager::updateMovie($item);
+            }
+        }
+//        var_dump($moviesWithCode);
+        exit();
     }
 
     public static function search($table, $expression)

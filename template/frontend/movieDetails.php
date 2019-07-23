@@ -2,23 +2,27 @@
 
 <div class="movies col-sm-12 col-md-6 row">
     <?php if (!is_null($movie->getImageUrl())): ?>
-    <div class="col-md-4">
-        <img src="<?= $movie->getImageUrl() ?>" alt="" style="max-width: 100%">
-    </div>
+        <div class="col-md-4">
+            <img class="img-fluid" src="<?= $movie->getImageUrl() ?>" alt="" style="max-width: 100%">
+        </div>
     <?php endif; ?>
     <div class="col-md-8">
-        <h3><?= $movie->getTitle() ?></h3>
-        <p>Dvd numéro : <?= $movie->getNoDvd() ?></p>
-        <p>Année : <?= $movie->getYear() ?></p>
-        <p>Genre : <?= $movie->getGenre() ?></p>
-        <p>Durée : <?= $movie->getDuration() ?> minutes</p>
+        <h3 class="text-uppercase"><?= $movie->getTitle() ?></h3>
+        <ul>
+            <li><span class="text-info">DVD :</span> <?= $movie->getNoDvd() ?></li>
+            <li>Année : <?= $movie->getYear() ?></li>
+            <li>Genre : <?= $movie->getGenre() ?></li>
+            <li>Durée : <?= $movie->getDuration() ?> minutes</li>
+        </ul>
     </div>
     <div class="col-md-12">
         <?php if (!is_null($movie->getSynopsis())) : ?>
-            <p>Synopsis : <?= $movie->getSynopsis() ?></p>
-        <?php endif; ?>
-        <?php if (preg_match("#^http#", $movie->getDescribeLink())): ?>
-            <p>Lien descriptif : <a href="<?= $movie->getDescribeLink() ?>" target="_blank"><?= $movie->getTitle() ?>
+            <h3 class="text-uppercase text-center">Synopsis</h3>
+            <p> <?= $movie->getSynopsis() ?><span><a href="<?= $movie->getDescribeLink() ?>" target="_blank"> en savoir plus</a></span>
+            </p>
+        <?php elseif (preg_match("#^http#", $movie->getDescribeLink())): ?>
+            <p>Lien descriptif : <a href="<?= $movie->getDescribeLink() ?>"
+                                    target="_blank"><?= $movie->getTitle() ?></a>
             </p>
         <?php else: ?>
             <p>Pas encore de descriptif de disponible !</p>

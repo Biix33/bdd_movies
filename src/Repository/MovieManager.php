@@ -44,9 +44,9 @@ class MovieManager extends Manager
         }
     }
 
-    public static function searchTitle($searchWord)
+    public static function searchTitle($table, $searchWord)
     {
-        $sql = "SELECT * FROM " . self::TABLE . " WHERE title LIKE %:searchq% ORDER BY title ASC";
+        $sql = "SELECT * FROM $table WHERE title LIKE %:searchq% ORDER BY title ASC";
         $q = parent::getPDO()->prepare($sql);
         $q->bindValue(':searchq', $searchWord, PDO::PARAM_STR);
         $q->execute();
@@ -57,6 +57,24 @@ class MovieManager extends Manager
     public static function findMovieWithLink()
     {
         $sql = "SELECT * FROM ".self::TABLE." WHERE link_allocine LIKE '%allocine%' AND movie_code IS NULL";
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
+        return self::map($data);
+    }
+
+    public static function findMovieWithoutLink()
+    {
+        $sql = "SELECT * FROM ".self::TABLE." WHERE link_allocine NOT LIKE '%http%' LIMIT 100";
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
+        return self::map($data);
+    }
+
+    public static function findMovieWithoutLinkCodeNotNull()
+    {
+        $sql = "SELECT * FROM ".self::TABLE." WHERE link_allocine NOT LIKE '%http%' AND movie_code IS NOT NULL LIMIT 100";
         $q = self::getPDO()->query($sql);
         $q->execute();
         $data = $q->fetchAll(PDO::FETCH_ASSOC);
