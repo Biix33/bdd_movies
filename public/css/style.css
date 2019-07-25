@@ -11,6 +11,18 @@ h1 {
     padding: 20px;
 }
 
+.jumbotron {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar {
+    padding: 0 2rem;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
 #bg-home {
     height: 100vh;
     background: url(../images/pixambo-objects-disc.jpg);

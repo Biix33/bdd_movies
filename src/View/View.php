@@ -20,8 +20,8 @@ class View
         return require_once '../template/404.php';
     }
 
-    public static function redirect($page)
+    public static function redirect($route)
     {
-        return header('Location: ' . $_SERVER['uri'] . "" . $page);
+        return header('Location: ' . "/" . $route);
     }
 }

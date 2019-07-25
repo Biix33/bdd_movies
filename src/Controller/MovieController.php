@@ -7,7 +7,6 @@ use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Model\Movie;
 use DBMOVIE\View\View;
 use DBMOVIE\Lib\api_allocine_helper\AlloHelper;
-use ErrorException;
 use Exception;
 
 class MovieController
@@ -49,7 +48,11 @@ class MovieController
     }
 
     public static function create()
+
     {
+        if ($_SERVER['REQUEST_METHOD'] === "GET") return View::render(self::TEMPLATE_PATH, 'create.movie');
+
+        $alloHelper = new AlloHelper();
         $movie = new Movie();
         $movie
             ->setTitle($_POST['dvd_title'])
@@ -58,12 +61,31 @@ class MovieController
             ->setGenre($_POST['genre'])
             ->setDuration($_POST['duration'])
             ->setDescribeLink($_POST['link_allocine']);
-        MovieManager::add($movie);
-        return View::redirect("movies");
+
+        $results = $alloHelper->search($movie->getTitle(), 1, 10, true, ['movie']);
+        if (isset($results['movie'])) {
+            $movie->setCode($results['movie'][0]['code']);
+        } else {
+            $movie->setCode($_POST['movie_code']);
+        }
+        if (!empty($movie->getCode())) {
+            $foundWithCode = $alloHelper->movie($movie->getCode());
+            $movie
+                ->setTitle($movie->getTitle())
+                ->setNumDvd($movie->getNoDvd())
+                ->setYear($foundWithCode['productionYear'])
+                ->setGenre($foundWithCode['genre'][0]['$'])
+                ->setDuration($foundWithCode['runtime'] / 60)
+                ->setDescribeLink($foundWithCode['link'][0]['href'])
+                ->setCode($movie->getCode());
+        }
+        $movieId = MovieManager::add($movie);
+        return View::redirect("movies/movie/$movieId");
     }
 
     public static function update($id)
     {
+        if ($_SERVER['REQUEST_METHOD'] !== "POST") return View::render(self::TEMPLATE_PATH, 'create.movie');
         try {
             $movie = new Movie();
             $movie
@@ -79,7 +101,7 @@ class MovieController
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return View::redirect("/movies/movie/$id");
+        return View::redirect("movies/movie/$id");
     }
 
     /**
@@ -130,18 +152,12 @@ class MovieController
         exit();
     }
 
-    public static function search($table, $expression)
+    public static function search()
     {
-        $movies = MovieManager::searchTitle($table, $expression);
-        var_dump($movies);
-        exit;
-        require_once 'template/frontend/searchResult.php';
+        if (!isset($_GET['db']) && !isset($_GET['q'])) {
+            return View::redirect('home');
+        }
+        $movies = MovieManager::findByTitle($_GET['db'], $_GET['q']);
+        return View::render(self::TEMPLATE_PATH, 'search.result', ['movies' => $movies]);
     }
-    /*
-public static function pagination($nbMovies, $nbMoviesPerPage)
-{
-$nbPages = ceil($nbMovies / $nbMoviesPerPage);
-}
- */
-
 }

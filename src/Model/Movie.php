@@ -2,6 +2,8 @@
 
 namespace DBMOVIE\Model;
 
+use Exception;
+
 class Movie extends Model
 {
     private $no_dvd;
@@ -19,17 +21,16 @@ class Movie extends Model
             ->setGenre($data['genre'])
             ->setDuration($data['duration'])
             ->setCode($data['movie_code'])
-            ->setDescribeLink($data['link_allocine']);
+            ->setDescribeLink($data['link_allocine'])
+            ->setUpdatedAt($data['updated_at'])
+            ->setDeletedAt($data['deleted_at']);
         return $movie;
     }
 
-    public function setNumDvd($no_dvd)
+    public function setNumDvd($dvdNumber)
     {
-        $no_dvd = intval($no_dvd);
-        if (empty($no_dvd)) {
-            throw new InvalidArgumentExcption("Dvd num can't be empty");
-        }
-        $this->no_dvd = $no_dvd;
+        $dvdNumber = trim(strip_tags($dvdNumber));
+        $this->no_dvd = intval($dvdNumber);
         return $this;
     }
 

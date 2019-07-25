@@ -12,7 +12,7 @@
     <?php foreach ($movies as $movie): ?>
         <tr>
             <td>
-                <a href="movies/movie/<?= $movie->getId()?>"><?= $movie->getTitle() ?></a>
+                <a href="/movies/movie/<?= $movie->getId()?>"><?= $movie->getTitle() ?></a>
             </td>
             <td style="text-align: center"><?= $movie->getNoDvd() ?></td>
             <td><?= $movie->getYear() ?></td>

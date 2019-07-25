@@ -64,10 +64,10 @@ abstract class Model
 
     /**
      * @param string $title
-     * @return Model
+     * @return static Model
      * @throws Exception
      */
-    public function setTitle(string $title): Model
+    public function setTitle(string $title)
     {
         if (empty($title)) {
             throw new Exception("Title can't be empty");
@@ -121,10 +121,10 @@ abstract class Model
     }
 
     /**
-     * @param string $updatedAt
+     * @param string|null $updatedAt
      * @return Model
      */
-    public function setUpdatedAt(string $updatedAt): Model
+    public function setUpdatedAt(?string $updatedAt): Model
     {
         $this->updatedAt = $updatedAt;
         return $this;
@@ -139,10 +139,10 @@ abstract class Model
     }
 
     /**
-     * @param string $deletedAt
+     * @param string|null $deletedAt
      * @return Model
      */
-    public function setDeletedAt(string $deletedAt): Model
+    public function setDeletedAt(?string $deletedAt): Model
     {
         $this->deletedAt = $deletedAt;
         return $this;

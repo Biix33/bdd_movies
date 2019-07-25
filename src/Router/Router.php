@@ -3,6 +3,7 @@
 namespace DBMOVIE\Router;
 
 use DBMOVIE\Controller\MovieController;
+use DBMOVIE\Controller\SearchController;
 use DBMOVIE\Controller\TvShowController;
 use DBMOVIE\View\View;
 
@@ -11,7 +12,8 @@ class Router
     private static $pages = [
         'home' => ['controller' => MovieController::class, 'method' => 'showHome'],
         'movies' => ['controller' => MovieController::class, 'method' => 'showMovies'],
-        'tvShow' => ['controller' => TvShowController::class, 'method' => 'showTvShow'],
+        'tvshows' => ['controller' => TvShowController::class, 'method' => 'showTvShows'],
+        'search' => ['controller' => SearchController::class, 'method' => 'find'],
     ];
 
     public static function renderRouter(Route $route)

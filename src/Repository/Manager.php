@@ -39,6 +39,16 @@ abstract class Manager extends Database
         return $model::hydrate($data);
     }
 
+    public static function findByTitle($searchWord)
+    {
+        $sql = "SELECT * FROM " . static::TABLE . " WHERE title LIKE :searchq ORDER BY title ASC";
+        $q = parent::getPDO()->prepare($sql);
+        $q->bindValue(':searchq', '%' . $searchWord . '%', PDO::PARAM_STR);
+        $q->execute();
+        $data = $q->fetchAll();
+        return self::map($data);
+    }
+
     protected static function map($data)
     {
         $movies = [];

@@ -34,4 +34,4 @@
 <div id="form-update" class="col-sm-12 col-md-6">
     <?php require_once '../template/includes/form-movie.php' ?>
 </div>
-<script type="text/javascript" src="js/display_update_form.js"></script>
+<script type="text/javascript" src="/js/display_update_form.js"></script>

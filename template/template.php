@@ -8,17 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <base href="http://bdd-films.bix.lan/">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css" />
+    <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <base href="<?= $_SERVER['HTTP_HOST'] ?>">
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="">
         <header class="jumbotron">
             <h1 class="title text-center"><a class="btn-block" href="/home">Welcome Media Store</a></h1>
+            <?php require_once 'includes/_navbar.php'?>
         </header>
-        <?php require_once 'includes/_navbar.php'?>
     </div>
     <div class="container">
         <div class="row">
