@@ -6,7 +6,7 @@ namespace DBMOVIE\Controller;
 
 use DBMOVIE\Lib\Utils;
 use DBMOVIE\Repository\TvShowManager;
-use DBMOVIE\View\View;
+use DBMOVIE\View\Viewer;
 
 class TvShowController
 {
@@ -17,7 +17,7 @@ class TvShowController
      */
     public static function showTvShows()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'GET') return View::redirect('home');
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') return Viewer::redirect('home');
 
         $currentPage = (!isset($_GET['p'])) ? 1 : $_GET['p'];
         $moviesPerPage = (!isset($_GET['nbM'])) ? 15 : $_GET['nbM'];
@@ -25,7 +25,7 @@ class TvShowController
         $tvShows = TvShowManager::getMoviesPage($min, $moviesPerPage);
         $totalTvShow = TvShowManager::count();
         $nbPage = Utils::pagination($totalTvShow, $moviesPerPage);
-        return View::render(self::TEMPLATE_PATH, 'movies', [
+        return Viewer::render(self::TEMPLATE_PATH, 'movies', [
            'tvShows' => $tvShows,
            'nbPages' => $nbPage
         ]);
@@ -34,6 +34,6 @@ class TvShowController
     public static function tvshow($id)
     {
         $tvShow = TvShowManager::findMovieById($id);
-        return View::render(self::TEMPLATE_PATH, 'tvShow.details', ['tvShow' => $tvShow]);
+        return Viewer::render(self::TEMPLATE_PATH, 'tvShow.details', ['tvShow' => $tvShow]);
     }
 }

@@ -11,10 +11,10 @@ class Database
     private static $pdo;
     private static $instance;
 
-    public static function getInstance($host = 'localhost', $name = 'w_video', $user = 'root', $password = 'president')
+    public static function getInstance()
     {
         if (empty(self::$instance)) {
-            self::$instance = new Database($host, $name, $user, $password);
+            self::$instance = new Database($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASS']);
         }
         return self::$instance;
     }

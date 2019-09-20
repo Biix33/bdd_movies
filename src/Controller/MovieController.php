@@ -5,7 +5,7 @@ namespace DBMOVIE\Controller;
 use DBMOVIE\Lib\Utils;
 use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Model\Movie;
-use DBMOVIE\View\View;
+use DBMOVIE\View\Viewer;
 use DBMOVIE\Lib\api_allocine_helper\AlloHelper;
 use Exception;
 
@@ -15,7 +15,7 @@ class MovieController
 
     public static function showHome()
     {
-        return View::render(self::TEMPLATE_PATH, 'home');
+        return Viewer::render(self::TEMPLATE_PATH, 'home');
     }
 
     public static function showMovies()
@@ -26,7 +26,12 @@ class MovieController
         $movies = MovieManager::getMoviesPage($min, $moviesPerPage);
         $totalMovies = MovieManager::count();
         $nbPages = Utils::pagination($totalMovies['count'], $moviesPerPage);
-        return View::render(self::TEMPLATE_PATH, 'movies', ['movies' => $movies, 'nbPages' => $nbPages]);
+        return Viewer::render(self::TEMPLATE_PATH, 'movies',
+            [
+                'movies' => $movies,
+                'nbPages' => $nbPages,
+                'currentPage' => $currentPage
+            ]);
     }
 
     public static function movie(int $id)
@@ -42,7 +47,7 @@ class MovieController
                 $movie->setImageUrl($movieA['poster']->url());
             }
         }
-        return View::render(self::TEMPLATE_PATH, 'movieDetails', [
+        return Viewer::render(self::TEMPLATE_PATH, 'movieDetails', [
             'movie' => $movie
         ]);
     }
@@ -50,7 +55,7 @@ class MovieController
     public static function create()
 
     {
-        if ($_SERVER['REQUEST_METHOD'] === "GET") return View::render(self::TEMPLATE_PATH, 'create.movie');
+        if ($_SERVER['REQUEST_METHOD'] === "GET") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
 
         $alloHelper = new AlloHelper();
         $movie = new Movie();
@@ -80,12 +85,12 @@ class MovieController
                 ->setCode($movie->getCode());
         }
         $movieId = MovieManager::add($movie);
-        return View::redirect("movies/movie/$movieId");
+        return Viewer::redirect("movies/movie/$movieId");
     }
 
     public static function update($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] !== "POST") return View::render(self::TEMPLATE_PATH, 'create.movie');
+        if ($_SERVER['REQUEST_METHOD'] !== "POST") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
         try {
             $movie = new Movie();
             $movie
@@ -101,7 +106,7 @@ class MovieController
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return View::redirect("movies/movie/$id");
+        return Viewer::redirect("movies/movie/$id");
     }
 
     /**
@@ -155,9 +160,9 @@ class MovieController
     public static function search()
     {
         if (!isset($_GET['db']) && !isset($_GET['q'])) {
-            return View::redirect('home');
+            return Viewer::redirect('home');
         }
         $movies = MovieManager::findByTitle($_GET['db'], $_GET['q']);
-        return View::render(self::TEMPLATE_PATH, 'search.result', ['movies' => $movies]);
+        return Viewer::render(self::TEMPLATE_PATH, 'search.result', ['movies' => $movies]);
     }
 }

@@ -5,11 +5,11 @@ namespace DBMOVIE\Router;
 use DBMOVIE\Controller\MovieController;
 use DBMOVIE\Controller\SearchController;
 use DBMOVIE\Controller\TvShowController;
-use DBMOVIE\View\View;
+use DBMOVIE\View\Viewer;
 
 class Router
 {
-    private static $pages = [
+    private static $routes = [
         'home' => ['controller' => MovieController::class, 'method' => 'showHome'],
         'movies' => ['controller' => MovieController::class, 'method' => 'showMovies'],
         'tvshows' => ['controller' => TvShowController::class, 'method' => 'showTvShows'],
@@ -18,16 +18,16 @@ class Router
 
     public static function renderRouter(Route $route)
     {
-        if (!key_exists($route->getPage(), self::$pages)):
+        if (!key_exists($route->getPage(), self::$routes)):
             http_response_code(404);
-            return View::render404();
+            return Viewer::render404();
         endif;
 
-        $controller = self::$pages[$route->getPage()]['controller'];
-        $method = (empty($route->getMethod())) ? self::$pages[$route->getPage()]['method'] : $route->getMethod();
+        $controller = self::$routes[$route->getPage()]['controller'];
+        $method = (empty($route->getMethod())) ? self::$routes[$route->getPage()]['method'] : $route->getMethod();
 
         if (!method_exists($controller, $method)):
-            return http_response_code(400);
+            return http_response_code(401);
         endif;
 
         return $controller::$method($route->getParams());
