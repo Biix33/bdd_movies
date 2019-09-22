@@ -2,37 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99945633-eeda-4ac6-aa0c-3aa7815a6f5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TvShowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TvShowController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/Utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/AlloData.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/AlloData.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/AlloHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/AlloHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/AlloImage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/AlloImage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/api-allocine-helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/api-allocine-helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/tests/basic-en.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/tests/basic-en.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/tests/basic-fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/tests/basic-fr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/tests/console-movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/tests/console-movie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lib/api_allocine_helper/tests/console-search.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/api_allocine_helper/tests/console-search.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Movie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TvShow.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TvShow.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/Manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MovieManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MovieManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Viewer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Viewer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/frontend/addMovie.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/frontend/addMovie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/frontend/create.movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/frontend/create.movie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/frontend/movieDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/frontend/movieDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/includes/_form.tvShow.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/includes/_form.tvShow.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/includes/form-movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/includes/_form.movie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/includes/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/includes/pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/Viewer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Viewer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/addMovie.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/create.movie.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/home.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/movieDetails.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/movies.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/search.result.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/frontend/search.result.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/frontend/tvShow.details.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/includes/_form.movie.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/includes/_tvshow.table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/includes/table-movies.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="696">
+              <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
               <folding>
                 <element signature="e#38#60#0#PHP" expanded="true" />
               </folding>
@@ -63,11 +46,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/TvShowController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="524">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
               <folding>
                 <element signature="e#40#62#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/tvshows/show.tvshow.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -86,6 +78,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="840">
               <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Services/Viewer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -121,16 +122,19 @@
         <option value="$PROJECT_DIR$/src/Services/Route.php" />
         <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/src/Repository/Database.php" />
-        <option value="$PROJECT_DIR$/src/Services/Viewer.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Repository/Manager.php" />
         <option value="$PROJECT_DIR$/template/includes/pagination.php" />
         <option value="$PROJECT_DIR$/template/includes/table-movies.php" />
-        <option value="$PROJECT_DIR$/src/Controller/MovieController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/TvShowController.php" />
         <option value="$PROJECT_DIR$/src/Model/TvShow.php" />
         <option value="$PROJECT_DIR$/template/includes/_form.tvShow.php" />
         <option value="$PROJECT_DIR$/src/Utils/Utils.php" />
+        <option value="$PROJECT_DIR$/template/movies/index.movies.php" />
+        <option value="$PROJECT_DIR$/template/movies/create.movie.php" />
+        <option value="$PROJECT_DIR$/src/Services/Viewer.php" />
+        <option value="$PROJECT_DIR$/src/Controller/TvShowController.php" />
+        <option value="$PROJECT_DIR$/template/movies/show.movie.php" />
+        <option value="$PROJECT_DIR$/src/Controller/MovieController.php" />
       </list>
     </option>
   </component>
@@ -227,6 +231,12 @@
               <item name="template" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="movies" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -241,6 +251,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="V:\bdd-films\template\movies" />
+      <recent name="V:\bdd-films\template\" />
+      <recent name="V:\bdd-films\template\tvshows" />
       <recent name="$PROJECT_DIR$/src/Services" />
     </key>
   </component>
@@ -281,12 +294,12 @@
       <workItem from="1567105515823" duration="2650000" />
       <workItem from="1568965953668" duration="3325000" />
       <workItem from="1569080192664" duration="356000" />
-      <workItem from="1569135749688" duration="5771000" />
+      <workItem from="1569135749688" duration="7449000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22084000" />
+    <option name="totallyTimeSpent" value="23762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -305,7 +318,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5103448" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2419175" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -351,13 +364,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_CONFIG_DIR$/phpstorm64.vmoptions" />
-    <entry file="file://$PROJECT_DIR$/template/frontend/movieDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SearchController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -378,22 +384,12 @@
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/includes/_form.movie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="42" column="70" selection-start-line="42" selection-start-column="70" selection-end-line="42" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/MovieManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/frontend/home.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/template/template.php">
       <provider selected="true" editor-type-id="text-editor" />
@@ -429,9 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/frontend/addMovie.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -443,13 +436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/Viewer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -479,24 +465,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/includes/table-movies.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="108" column="32" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/frontend/tvShow.details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -514,19 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/frontend/movies.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/TvShowController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/Utils.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -534,10 +493,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/_table.movies.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/tvshows/_tvshow.table.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/index.movies.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/frontend/add.movie.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/_form.movie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="42" column="70" selection-start-line="42" selection-start-column="70" selection-end-line="42" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/create.movie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/tvshows/show.tvshow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Viewer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/TvShowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/home.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/show.movie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="696">
+          <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
           <folding>
             <element signature="e#38#60#0#PHP" expanded="true" />
           </folding>

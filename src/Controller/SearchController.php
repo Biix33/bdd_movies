@@ -10,7 +10,7 @@ use DBMOVIE\View\Viewer;
 
 class SearchController
 {
-    const TEMPLATE_PATH = '../template/frontend/';
+    const TEMPLATE_PATH = '../template/search/';
 
     public static function find()
     {

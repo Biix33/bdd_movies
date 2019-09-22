@@ -11,17 +11,17 @@ use Exception;
 
 class MovieController
 {
-    const TEMPLATE_PATH = '../template/frontend/';
+    const TEMPLATE_PATH = '../template/movies/';
 
     public static function showHome()
     {
-        return Viewer::render(self::TEMPLATE_PATH, 'home');
+        return Viewer::render('home');
     }
 
     public static function showMovies()
     {
         $pagination = Utils::paginated(MovieManager::class);
-        return Viewer::render(self::TEMPLATE_PATH, 'movies',
+        return Viewer::render('movies/index.movies',
             [
                 'movies' => $pagination['elements'],
                 'paginated' => $pagination,
@@ -42,7 +42,7 @@ class MovieController
                 $movie->setImageUrl($movieA['poster']->url());
             }
         }
-        return Viewer::render(self::TEMPLATE_PATH, 'movieDetails', [
+        return Viewer::render( 'movies/show.movie', [
             'movie' => $movie
         ]);
     }

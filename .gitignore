@@ -1,3 +1,5 @@
 /vendor/
 .env
 test.html
+.idea
+.vscode

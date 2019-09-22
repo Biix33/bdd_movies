@@ -8,10 +8,8 @@ use DBMOVIE\Utils\Utils;
 use DBMOVIE\Repository\TvShowManager;
 use DBMOVIE\Services\Viewer;
 
-class TvShowController
+class TvShowController extends MovieController
 {
-    const TEMPLATE_PATH = '../template/frontend/';
-
     /**
      * @return mixed|void
      */
@@ -20,7 +18,7 @@ class TvShowController
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') return Viewer::redirect('home');
 
         $pagination = Utils::paginated(TvShowManager::class);
-        return Viewer::render(self::TEMPLATE_PATH, 'movies', [
+        return Viewer::render('movies/index.movies', [
            'tvShows' => $pagination['elements'],
            'paginated' => $pagination
         ]);
@@ -29,6 +27,6 @@ class TvShowController
     public static function tvshow($id)
     {
         $tvShow = TvShowManager::findMovieById($id);
-        return Viewer::render(self::TEMPLATE_PATH, 'tvShow.details', ['tvShow' => $tvShow]);
+        return Viewer::render('tvshows/show.tvshow', ['tvShow' => $tvShow]);
     }
 }
