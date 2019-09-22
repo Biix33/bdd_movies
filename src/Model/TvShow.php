@@ -29,8 +29,8 @@ class TvShow extends Model
             ->setNumOfDvd($data['num_of_dvd'])
             ->setGenre($data['genre'])
             ->setNumOfSeason($data['num_of_season'])
-            ->setDescribeLink($data['describe_link'])
-            ->setCode($data['allocine_code'])
+            ->setLinkAllocine($data['describe_link'])
+            ->setMovieCode($data['allocine_code'])
             ->setUpdatedAt($data['updated_at'])
             ->setDeletedAt($data['deleted_at']);
         return $tvShow;

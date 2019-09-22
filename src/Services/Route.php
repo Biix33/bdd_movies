@@ -1,7 +1,7 @@
 <?php
 
 
-namespace DBMOVIE\Router;
+namespace DBMOVIE\Services;
 
 
 class Route

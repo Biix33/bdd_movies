@@ -13,21 +13,14 @@ class Movie extends Model
     public static function hydrate(array $data)
     {
         $movie = new Movie();
-        $movie
-            ->setId($data['id'])
-            ->setTitle($data['title'])
-            ->setNumDvd($data['no_dvd'])
-            ->setYear($data['year'])
-            ->setGenre($data['genre'])
-            ->setDuration($data['duration'])
-            ->setCode($data['movie_code'])
-            ->setDescribeLink($data['link_allocine'])
-            ->setUpdatedAt($data['updated_at'])
-            ->setDeletedAt($data['deleted_at']);
+        foreach ($data as $field => $value) {
+            $method = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $field)));
+            $movie->$method($value);
+        }
         return $movie;
     }
 
-    public function setNumDvd($dvdNumber)
+    public function setNoDvd($dvdNumber)
     {
         $dvdNumber = trim(strip_tags($dvdNumber));
         $this->no_dvd = intval($dvdNumber);

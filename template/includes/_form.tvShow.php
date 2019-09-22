@@ -32,7 +32,7 @@
     <div class="form-group">
         <label for="movie_code">Code film</label><br>
         <input class="form-control" type="text" id="movie_code" name="movie_code"
-               value="<?= (isset($tvShow)) ? $tvShow->getCode() : "" ?>">
+               value="<?= (isset($tvShow)) ? $tvShow->getMovieCode() : "" ?>">
     </div>
     <div class="form-group">
         <input class="btn btn-default" type="submit" name="update" value="Mettre à jour">

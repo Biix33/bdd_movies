@@ -8,23 +8,24 @@ use PDO;
 
 abstract class Manager extends Database
 {
-    public static function getMoviesPage($min, $max)
+    public static function getMoviesPaginated($offset, $limit)
     {
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id LIMIT ?, ?';
         $q = self::getPDO()->prepare($sql);
-        $q->bindValue(1, $min, PDO::PARAM_INT);
-        $q->bindValue(2, $max, PDO::PARAM_INT);
+        $q->bindValue(1, $offset, PDO::PARAM_INT);
+        $q->bindValue(2, $limit, PDO::PARAM_INT);
         $q->execute();
-        $data = $q->fetchAll();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
         return self::map($data);
     }
 
     public static function count()
     {
-        $sql = "SELECT COUNT(id) AS 'count' FROM " . static::TABLE;
+        $sql = "SELECT COUNT(id) FROM " . static::TABLE;
         $q = self::getPDO()->query($sql);
         $q->execute();
-        return $q->fetch(PDO::FETCH_ASSOC);
+        $count = $q->fetch(PDO::FETCH_NUM);
+        return intval($count[0]);
     }
 
     public static function findMovieById($id)
@@ -45,7 +46,7 @@ abstract class Manager extends Database
         $q = parent::getPDO()->prepare($sql);
         $q->bindValue(':searchq', '%' . $searchWord . '%', PDO::PARAM_STR);
         $q->execute();
-        $data = $q->fetchAll();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
         return self::map($data);
     }
 

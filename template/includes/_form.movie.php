@@ -1,7 +1,8 @@
-<form class="well" action="<?= (isset($movie)) ? "/movies/update/" . $movie->getId() : "/movies/create" ?>" method="post">
+<form class="well" action="<?= (isset($movie)) ? "/movies/update/" . $movie->getId() : "/movies/create" ?>"
+      method="post">
     <div class="form-group">
-        <label for="dvd_title">Titre :</label><br>
-        <input class="form-control" type="text" id="dvd_title" name="dvd_title"
+        <label for="title">Titre :</label><br>
+        <input class="form-control" type="text" id="title" name="title"
                value="<?= (isset($movie)) ? $movie->getTitle() : "" ?>">
     </div>
     <div class="form-group">
@@ -32,9 +33,13 @@
     <div class="form-group">
         <label for="movie_code">Code film</label><br>
         <input class="form-control" type="text" id="movie_code" name="movie_code"
-               value="<?= (isset($movie)) ? $movie->getCode() : "" ?>">
+               value="<?= (isset($movie)) ? $movie->getMovieCode() : "" ?>">
     </div>
+    <?php if (isset($movie)): ?>
+        <input type="hidden" name="id" value="<?= $movie->getId() ?>">
+    <?php endif; ?>
     <div class="form-group">
-        <input class="btn btn-default" type="submit" name="update" value="Mettre à jour">
+        <input class="btn btn-default" type="submit" name="submit"
+               value="<?= (isset($movie)) ? "Mettre à jour" : "Ajouter" ?>">
     </div>
 </form>

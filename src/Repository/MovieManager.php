@@ -24,7 +24,7 @@ class MovieManager extends Manager
         $q->bindValue(4, $movie->getGenre(), PDO::PARAM_STR);
         $q->bindValue(5, $movie->getDuration(), PDO::PARAM_INT);
         $q->bindValue(6, $movie->getDescribeLink(), PDO::PARAM_STR);
-        $q->bindValue(7, $movie->getCode(), PDO::PARAM_STR);
+        $q->bindValue(7, $movie->getMovieCode(), PDO::PARAM_STR);
         $q->execute();
         return $pdo->lastInsertId();
     }
@@ -41,7 +41,7 @@ class MovieManager extends Manager
         $q->bindValue(':genre', $movie->getGenre(), PDO::PARAM_STR);
         $q->bindValue(':duration', $movie->getDuration(), PDO::PARAM_INT);
         $q->bindValue(':link', $movie->getDescribeLink(), PDO::PARAM_STR);
-        $q->bindValue(':code', $movie->getCode(), PDO::PARAM_STR);
+        $q->bindValue(':code', $movie->getMovieCode(), PDO::PARAM_STR);
         $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
         $q->execute();
 
@@ -81,7 +81,7 @@ class MovieManager extends Manager
     {
         $sql = "UPDATE " . self::TABLE . " SET movie_code=:code WHERE id=:id";
         $q = self::getPDO()->prepare($sql);
-        $q->bindValue(':code', $movie->getCode(), PDO::PARAM_STR);
+        $q->bindValue(':code', $movie->getMovieCode(), PDO::PARAM_STR);
         $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
         $q->execute();
     }

@@ -1,4 +1,6 @@
-<?php $title = $movie->getTitle() ?>
+<?php
+$title = $movie->getTitle()
+?>
 
 <div class="movies col-sm-12 col-md-6 row">
     <?php if (!is_null($movie->getImageUrl())): ?>
@@ -32,6 +34,6 @@
     </div>
 </div>
 <div id="form-update" class="col-sm-12 col-md-6">
-    <?php require_once '../template/includes/form-movie.php' ?>
+    <?php require_once '../template/includes/_form.movie.php' ?>
 </div>
 <script type="text/javascript" src="/js/display_update_form.js"></script>

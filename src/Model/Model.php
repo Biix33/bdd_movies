@@ -88,7 +88,7 @@ abstract class Model
      * @param string $describeLink
      * @return Model
      */
-    public function setDescribeLink(string $describeLink): Model
+    public function setLinkAllocine(string $describeLink): Model
     {
         $this->describeLink = $describeLink;
         return $this;
@@ -97,7 +97,7 @@ abstract class Model
     /**
      * @return int|string
      */
-    public function getCode()
+    public function getMovieCode()
     {
         return $this->code;
     }
@@ -106,7 +106,7 @@ abstract class Model
      * @param int|string $code
      * @return Model
      */
-    public function setCode($code)
+    public function setMovieCode($code)
     {
         $this->code = $code;
         return $this;

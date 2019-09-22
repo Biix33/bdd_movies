@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="well col-sm-8">
-               <?php require_once 'template/includes/form-movie.php' ?>
+               <?php require_once 'template/includes/_form.movie.php' ?>
             </div>
         </div>
 

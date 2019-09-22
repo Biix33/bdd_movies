@@ -2,11 +2,11 @@
 
 namespace DBMOVIE\Controller;
 
-use DBMOVIE\Lib\Utils;
+use DBMOVIE\Utils\Utils;
 use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Model\Movie;
-use DBMOVIE\View\Viewer;
-use DBMOVIE\Lib\api_allocine_helper\AlloHelper;
+use DBMOVIE\Services\Viewer;
+use DBMOVIE\Utils\api_allocine_helper\AlloHelper;
 use Exception;
 
 class MovieController
@@ -20,26 +20,21 @@ class MovieController
 
     public static function showMovies()
     {
-        $currentPage = (!isset($_GET['p'])) ? 1 : $_GET['p'];
-        $moviesPerPage = (!isset($_GET['nbM'])) ? 15 : $_GET['nbM'];
-        $min = ($currentPage - 1) * $moviesPerPage;
-        $movies = MovieManager::getMoviesPage($min, $moviesPerPage);
-        $totalMovies = MovieManager::count();
-        $nbPages = Utils::pagination($totalMovies['count'], $moviesPerPage);
+        $pagination = Utils::paginated(MovieManager::class);
         return Viewer::render(self::TEMPLATE_PATH, 'movies',
             [
-                'movies' => $movies,
-                'nbPages' => $nbPages,
-                'currentPage' => $currentPage
+                'movies' => $pagination['elements'],
+                'paginated' => $pagination,
             ]);
     }
 
     public static function movie(int $id)
     {
+        /** @var Movie $movie */
         $movie = MovieManager::findMovieById($id);
-        if ($movie->getCode()) {
+        if ($movie->getMovieCode()) {
             $helper = new AlloHelper();
-            $movieA = $helper->movie($movie->getCode());
+            $movieA = $helper->movie($movie->getMovieCode());
             if (array_key_exists('synopsis', $movieA)) {
                 $movie->setSynopsis($movieA['synopsis']);
             }
@@ -58,31 +53,25 @@ class MovieController
         if ($_SERVER['REQUEST_METHOD'] === "GET") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
 
         $alloHelper = new AlloHelper();
-        $movie = new Movie();
-        $movie
-            ->setTitle($_POST['dvd_title'])
-            ->setNumDvd($_POST['no_dvd'])
-            ->setYear($_POST['year'])
-            ->setGenre($_POST['genre'])
-            ->setDuration($_POST['duration'])
-            ->setDescribeLink($_POST['link_allocine']);
+        /** @var Movie $movie */
+        $movie = Movie::hydrate($_POST);
 
         $results = $alloHelper->search($movie->getTitle(), 1, 10, true, ['movie']);
         if (isset($results['movie'])) {
-            $movie->setCode($results['movie'][0]['code']);
+            $movie->setMovieCode($results['movie'][0]['code']);
         } else {
-            $movie->setCode($_POST['movie_code']);
+            $movie->setMovieCode($_POST['movie_code']);
         }
-        if (!empty($movie->getCode())) {
-            $foundWithCode = $alloHelper->movie($movie->getCode());
+        if (!empty($movie->getMovieCode())) {
+            $foundWithCode = $alloHelper->movie($movie->getMovieCode());
             $movie
                 ->setTitle($movie->getTitle())
-                ->setNumDvd($movie->getNoDvd())
+                ->setNoDvd($movie->getNoDvd())
                 ->setYear($foundWithCode['productionYear'])
                 ->setGenre($foundWithCode['genre'][0]['$'])
                 ->setDuration($foundWithCode['runtime'] / 60)
-                ->setDescribeLink($foundWithCode['link'][0]['href'])
-                ->setCode($movie->getCode());
+                ->setLinkAllocine($foundWithCode['link'][0]['href'])
+                ->setCode($movie->getMovieCode());
         }
         $movieId = MovieManager::add($movie);
         return Viewer::redirect("movies/movie/$movieId");
@@ -91,17 +80,9 @@ class MovieController
     public static function update($id)
     {
         if ($_SERVER['REQUEST_METHOD'] !== "POST") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
+
         try {
-            $movie = new Movie();
-            $movie
-                ->setId($id)
-                ->setTitle($_POST['dvd_title'])
-                ->setNumDvd($_POST['no_dvd'])
-                ->setYear($_POST['year'])
-                ->setGenre($_POST['genre'])
-                ->setDuration($_POST['duration'])
-                ->setCode($_POST['movie_code'])
-                ->setDescribeLink($_POST['link_allocine']);
+            $movie = Movie::hydrate($_POST);
             MovieManager::updateMovie($movie);
         } catch (Exception $e) {
             echo $e->getMessage();

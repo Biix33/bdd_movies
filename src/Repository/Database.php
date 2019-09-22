@@ -25,7 +25,7 @@ class Database
         $this->_dbname = $name;
         $this->_username = $user;
         $this->_password = $password;
-        self::$pdo = new PDO('mysql:host=' . $this->_host . ';dbname=' . $this->_dbname . ';charset=utf8', '' . $this->_username . '', '' . $this->_password . '');
+        self::$pdo = new PDO("mysql:host={$this->_host};dbname={$this->_dbname};charset=utf8", $this->_username, $this->_password);
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

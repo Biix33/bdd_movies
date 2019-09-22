@@ -1,5 +1,5 @@
 <?php
-namespace DBMOVIE\Lib\api_allocine_helper;
+namespace DBMOVIE\Utils\api_allocine_helper;
 require_once 'api-allocine-helper.php';
 
     /**

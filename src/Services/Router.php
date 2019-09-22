@@ -1,11 +1,10 @@
 <?php
 
-namespace DBMOVIE\Router;
+namespace DBMOVIE\Services;
 
 use DBMOVIE\Controller\MovieController;
 use DBMOVIE\Controller\SearchController;
 use DBMOVIE\Controller\TvShowController;
-use DBMOVIE\View\Viewer;
 
 class Router
 {
