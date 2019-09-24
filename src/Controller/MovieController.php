@@ -29,10 +29,10 @@ class MovieController
             ]);
     }
 
-    public static function movie(int $id)
+    public static function movie(array $params)
     {
         /** @var Movie $movie */
-        $movie = MovieManager::findMovieById($id);
+        $movie = MovieManager::findMovieById((int)$params['id']);
         if ($movie->getMovieCode()) {
             $helper = new AlloHelper();
             $movieA = $helper->movie($movie->getMovieCode());
@@ -57,12 +57,12 @@ class MovieController
         $movie = Movie::hydrate($_POST);
         $movie = self::findOnAlloCine($movie);
         $movieId = MovieManager::add($movie);
-        return Viewer::redirect("movies/movie/$movieId");
+        return Viewer::redirect("movie/$movieId");
     }
 
-    public static function update($id)
+    public static function update(array $params)
     {
-        if ($_SERVER['REQUEST_METHOD'] !== "POST") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
+        if ($_SERVER['REQUEST_METHOD'] == "GET") return Viewer::render('movies/create.movie');
 
         try {
             $movie = Movie::hydrate($_POST);
@@ -73,7 +73,7 @@ class MovieController
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return Viewer::redirect("movies/movie/$id");
+        return Viewer::redirect("movie/{$params['id']}");
     }
 
     protected static function findOnAlloCine(Model $model)

@@ -1,4 +1,4 @@
-<form class="well" action="<?= (isset($movie)) ? "/update-movie/" . $movie->getId() : "/create-movie" ?>"
+<form class="well" action="<?= (isset($movie)) ? "/update-movie/" . $movie->getId() : "" ?>"
       method="post">
     <div class="form-group">
         <label for="title">Titre :</label><br>

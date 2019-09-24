@@ -14,7 +14,7 @@
     <?php foreach ($tvShows as $tvShow): ?>
         <tr>
             <td>
-                <a href="/tvshows/tvshow/<?= $tvShow->getId()?>"><?= $tvShow->getTitle() ?></a>
+                <a href="/tv-show/<?= $tvShow->getId()?>"><?= $tvShow->getTitle() ?></a>
             </td>
             <td><?= $tvShow->getGenre() ?></td>
             <td><?= $tvShow->getStartYear() ?></td>
