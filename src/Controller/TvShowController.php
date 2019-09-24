@@ -24,7 +24,7 @@ class TvShowController extends MovieController
         ]);
     }
 
-    public static function tvshow($id)
+    public static function tvShow($id)
     {
         $tvShow = TvShowManager::findMovieById($id);
         return Viewer::render('tvshows/show.tvshow', ['tvShow' => $tvShow]);

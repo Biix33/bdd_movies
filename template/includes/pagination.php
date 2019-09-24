@@ -2,7 +2,7 @@
     <li class="page-item <?= ($paginated['current_page'] <= 1) ? "disabled" : "" ?>">
         <a href="movies?p=<?= $paginated['current_page'] - 1 ?>" class="page-link">Précédent</a>
     </li>
-    <?php for ($i = 1; $i < $paginated['nb_pages']; $i++): ?>
+    <?php for ($i = 1; $i <= $paginated['nb_pages']; $i++): ?>
         <li class="page-item <?= ($i == $paginated['current_page']) ? "active" : "" ?>">
             <a href="movies?p=<?= $i ?>" class="page-link"><?= $i ?></a>
         </li>

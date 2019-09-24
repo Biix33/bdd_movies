@@ -20,7 +20,7 @@ class Viewer
 
     public static function render404()
     {
-        return require_once '../template/error404.php';
+        return require_once '../template/errors/error404.php';
     }
 
     public static function redirect($route)

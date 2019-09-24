@@ -2,6 +2,7 @@
 
 namespace DBMOVIE\Controller;
 
+use DBMOVIE\Model\Model;
 use DBMOVIE\Utils\Utils;
 use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Model\Movie;
@@ -42,7 +43,7 @@ class MovieController
                 $movie->setImageUrl($movieA['poster']->url());
             }
         }
-        return Viewer::render( 'movies/show.movie', [
+        return Viewer::render('movies/show.movie', [
             'movie' => $movie
         ]);
     }
@@ -50,29 +51,11 @@ class MovieController
     public static function create()
 
     {
-        if ($_SERVER['REQUEST_METHOD'] === "GET") return Viewer::render(self::TEMPLATE_PATH, 'create.movie');
+        if ($_SERVER['REQUEST_METHOD'] === "GET") return Viewer::render('movies/create.movie');
 
-        $alloHelper = new AlloHelper();
         /** @var Movie $movie */
         $movie = Movie::hydrate($_POST);
-
-        $results = $alloHelper->search($movie->getTitle(), 1, 10, true, ['movie']);
-        if (isset($results['movie'])) {
-            $movie->setMovieCode($results['movie'][0]['code']);
-        } else {
-            $movie->setMovieCode($_POST['movie_code']);
-        }
-        if (!empty($movie->getMovieCode())) {
-            $foundWithCode = $alloHelper->movie($movie->getMovieCode());
-            $movie
-                ->setTitle($movie->getTitle())
-                ->setNoDvd($movie->getNoDvd())
-                ->setYear($foundWithCode['productionYear'])
-                ->setGenre($foundWithCode['genre'][0]['$'])
-                ->setDuration($foundWithCode['runtime'] / 60)
-                ->setLinkAllocine($foundWithCode['link'][0]['href'])
-                ->setCode($movie->getMovieCode());
-        }
+        $movie = self::findOnAlloCine($movie);
         $movieId = MovieManager::add($movie);
         return Viewer::redirect("movies/movie/$movieId");
     }
@@ -83,11 +66,38 @@ class MovieController
 
         try {
             $movie = Movie::hydrate($_POST);
+            if (empty($movie->getMovieCode()) || empty($movie->getDescribeLink())) {
+                $movie = self::findOnAlloCine($movie);
+            }
             MovieManager::updateMovie($movie);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
         return Viewer::redirect("movies/movie/$id");
+    }
+
+    protected static function findOnAlloCine(Model $model)
+    {
+        $alloHelper = new AlloHelper();
+
+        $results = $alloHelper->search($model->getTitle(), 1, 10, true, ['movie']);
+        if (isset($results['movie'])) {
+            $model->setMovieCode($results['movie'][0]['code']);
+        } else {
+            $model->setMovieCode($_POST['movie_code']);
+        }
+        if (!empty($model->getMovieCode())) {
+            $foundWithCode = $alloHelper->movie($model->getMovieCode());
+            $model
+                ->setTitle($model->getTitle())
+                ->setNoDvd($model->getNoDvd())
+                ->setYear($foundWithCode['productionYear'])
+                ->setGenre($foundWithCode['genre'][0]['$'])
+                ->setDuration($foundWithCode['runtime'] / 60)
+                ->setLinkAllocine($foundWithCode['link'][0]['href'])
+                ->setMovieCode($model->getMovieCode());
+        }
+        return $model;
     }
 
     /**
@@ -134,16 +144,6 @@ class MovieController
                 MovieManager::updateMovie($item);
             }
         }
-//        var_dump($moviesWithCode);
         exit();
-    }
-
-    public static function search()
-    {
-        if (!isset($_GET['db']) && !isset($_GET['q'])) {
-            return Viewer::redirect('home');
-        }
-        $movies = MovieManager::findByTitle($_GET['db'], $_GET['q']);
-        return Viewer::render(self::TEMPLATE_PATH, 'search.result', ['movies' => $movies]);
     }
 }

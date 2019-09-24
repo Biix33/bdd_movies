@@ -4,14 +4,14 @@
             <a data-toggle="dropdown" class="" href="#">Films <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="/movies">Tous</a></li>
-                <li><a href="/movies/create">Ajouter</a></li>
+                <li><a href="/add-movie">Ajouter</a></li>
             </ul>
         </li>
         <li class="dropdown-tvshow">
             <a data-toggle="dropdown" class="" href="#">Séries <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="/tvshows">Toutes</a></li>
-                <li><a href="/tvshows/create">Ajouter</a></li>
+                <li><a href="/tv-shows">Toutes</a></li>
+                <li><a href="/add-tvshow">Ajouter</a></li>
             </ul>
         </li>
     </ul>

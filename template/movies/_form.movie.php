@@ -1,4 +1,4 @@
-<form class="well" action="<?= (isset($movie)) ? "/movies/update/" . $movie->getId() : "/movies/create" ?>"
+<form class="well" action="<?= (isset($movie)) ? "/update-movie/" . $movie->getId() : "/create-movie" ?>"
       method="post">
     <div class="form-group">
         <label for="title">Titre :</label><br>
@@ -39,7 +39,6 @@
         <input type="hidden" name="id" value="<?= $movie->getId() ?>">
     <?php endif; ?>
     <div class="form-group">
-        <input class="btn btn-default" type="submit" name="submit"
-               value="<?= (isset($movie)) ? "Mettre à jour" : "Ajouter" ?>">
+        <button class="btn btn-primary" type="submit"><?= (isset($movie)) ? "Mettre à jour" : "Ajouter" ?></button>
     </div>
 </form>

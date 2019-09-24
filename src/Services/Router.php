@@ -2,33 +2,63 @@
 
 namespace DBMOVIE\Services;
 
-use DBMOVIE\Controller\MovieController;
-use DBMOVIE\Controller\SearchController;
-use DBMOVIE\Controller\TvShowController;
-
 class Router
 {
+    private static $basePath;
+
     private static $routes = [
-        'home' => ['controller' => MovieController::class, 'method' => 'showHome'],
-        'movies' => ['controller' => MovieController::class, 'method' => 'showMovies'],
-        'tvshows' => ['controller' => TvShowController::class, 'method' => 'showTvShows'],
-        'search' => ['controller' => SearchController::class, 'method' => 'find'],
+        '/home' => ['action' => 'MovieController#showHome', 'method' => 'GET'],
+        '/movies' => ['action' => 'MovieController#showMovies', 'method' => 'GET'],
+        '/movie/:id' => ['action' => 'MovieController#movie', 'method' => 'GET'],
+        '/update-movie/:id' => ['action' => 'MovieController#update', 'method' => 'POST'],
+        '/add-movie' => ['action' => 'MovieController#create', 'method' => 'GET|POST'],
+        '/tv-shows' => ['action' => 'TvShowController#showTvShows', 'method' => 'GET'],
+        '/tv-show/:id' => ['action' => 'TvShowController#tvShow', 'method' => 'GET'],
+        '/update-tv-show/:id' => ['action' => 'TvShowController#update', 'method' => 'POST'],
+        '/add-tvshow' => ['action' => 'TvShowController#create', 'method' => 'GET|POST'],
+        '/search' => ['action' => 'SearchController#find', 'method' => 'GET'],
     ];
 
     public static function renderRouter(Route $route)
     {
-        if (!key_exists($route->getPage(), self::$routes)):
+        if (!key_exists($_SERVER['REQUEST_URI'], self::$routes)) {
             http_response_code(404);
             return Viewer::render404();
-        endif;
+        } elseif ($_SERVER['REQUEST_METHOD'] !== self::$routes[$_SERVER['REQUEST_URI']]['method']) {
+            http_response_code(401);
+            return Viewer::render404();
+        }
 
-        $controller = self::$routes[$route->getPage()]['controller'];
-        $method = (empty($route->getMethod())) ? self::$routes[$route->getPage()]['method'] : $route->getMethod();
+        $controller = 'DBMOVIE\\Controller\\'.explode('#',self::$routes[$_SERVER['REQUEST_URI']]['action'])[0];
+        $method = explode('#', self::$routes[$_SERVER['REQUEST_URI']]['action'])[1];
+        $params = explode('/', $_SERVER['REQUEST_URI'])[2] ?? null;
 
-        if (!method_exists($controller, $method)):
-            return http_response_code(401);
-        endif;
+        return $controller::$method($params);
+    }
 
-        return $controller::$method($route->getParams());
+    private static function match()
+    {
+        self::$basePath = $_SERVER['BASE_PATH'] ?? '';
+
+        $requestUrl = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+
+        $requestUrl = substr($requestUrl, strlen(self::$basePath));
+
+        if (($strpos = strpos($requestUrl, '?')) !== false) {
+            $requestUrl = substr($requestUrl, 0, $strpos);
+        }
+
+        $match = false;
+
+        if (key_exists($requestUrl, self::$routes)){
+            $methods = explode('|', self::$routes[$requestUrl]['method']);
+            $method_match = false;
+            foreach ($methods as $method) {
+                if (strcasecmp($_SERVER['REQUEST_METHOD'], $method) === 0) {
+                    $method_match = true;
+                    break;
+                }
+            }
+        }
     }
 }

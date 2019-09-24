@@ -1,5 +1,5 @@
 <?php
-$title = $movie->getTitle()
+$title = ucwords($movie->getTitle());
 ?>
 
 <div class="movies col-sm-12 col-md-6 row">

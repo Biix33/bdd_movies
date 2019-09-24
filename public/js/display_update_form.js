@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const $formUpdate = document.querySelector('#form-update');
-    const $btnUpdate = document.querySelector('#btn-update');
+$(() => {
+    const $formUpdate = $('#form-update');
+    const $btnUpdate = $('#btn-update');
 
-    $formUpdate.style.display = "none";
+    $formUpdate.css('display', 'none');
 
-    $btnUpdate.addEventListener('click', function() {
-        $formUpdate.style.display = "block";
-        this.style.display = 'none';
+    $btnUpdate.on('click', function() {
+        $formUpdate.fadeIn('slow');
+        $(this).fadeOut('slow');
     });
 });
 

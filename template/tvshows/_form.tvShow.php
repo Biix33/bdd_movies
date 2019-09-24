@@ -35,6 +35,6 @@
                value="<?= (isset($tvShow)) ? $tvShow->getMovieCode() : "" ?>">
     </div>
     <div class="form-group">
-        <input class="btn btn-default" type="submit" name="update" value="Mettre à jour">
+        <button class="btn btn-default" type="submit"><?= (isset($tvShow)) ? "Mettre à jour" : "Ajouter" ?></button>
     </div>
 </form>
