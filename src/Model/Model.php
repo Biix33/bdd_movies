@@ -35,6 +35,17 @@ abstract class Model
     /** @var string|null $imageUrl */
     protected $imageUrl;
 
+    public static function hydrate(array $data)
+    {
+        $model = static::class;
+        $object = new $model();
+        foreach ($data as $field => $value) {
+            $method = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $field)));
+            $object->$method($value);
+        }
+        return $object;
+    }
+
     /**
      * @return int|string
      */
@@ -59,7 +70,7 @@ abstract class Model
      */
     public function getTitle(): string
     {
-        return $this->title;
+        return ucwords(trim($this->title));
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 namespace DBMOVIE\Utils\api_allocine_helper;
 
+use ErrorException;
+
 require_once 'api-allocine-helper.php';
     /**
     * Exécuter les requêtes et traiter les données.

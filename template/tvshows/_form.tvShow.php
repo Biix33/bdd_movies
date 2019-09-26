@@ -1,18 +1,23 @@
-<form class="well" action="<?= (isset($tvShow)) ? "/tvshows/update/" . $tvShow->getId() : "/tvshows/create" ?>" method="post">
+<form class="well" action="<?= (isset($tvShow)) ? "/update-tv-show/" . $tvShow->getId() : "/add-tv-show" ?>" method="post">
     <div class="form-group">
-        <label for="dvd_title">Titre :</label><br>
-        <input class="form-control" type="text" id="dvd_title" name="dvd_title"
+        <label for="title">Titre :</label><br>
+        <input class="form-control" type="text" id="title" name="title"
                value="<?= (isset($tvShow)) ? $tvShow->getTitle() : "" ?>">
     </div>
     <div class="form-group">
-        <label for="no_dvd"> Numéro Dvd :</label><br>
-        <input class="form-control" type="text" id="no_dvd" name="no_dvd"
+        <label for="num_of_dvd"> Nombre de DVD :</label><br>
+        <input class="form-control" type="text" id="num_of_dvd" name="num_of_dvd"
                value="<?= (isset($tvShow)) ? $tvShow->getNumOfDvd() : "" ?>">
     </div>
     <div class="form-group">
-        <label for="year">Année :</label><br>
-        <input class="form-control" type="text" id="year" name="year"
+        <label for="start_year">Année de début :</label><br>
+        <input class="form-control" type="text" id="start_year" name="start_year"
                value="<?= (isset($tvShow)) ? $tvShow->getStartYear() : "" ?>">
+    </div>
+    <div class="form-group">
+        <label for="end_year">Année de fin :</label><br>
+        <input class="form-control" type="text" id="end_year" name="end_year"
+               value="<?= (isset($tvShow)) ? $tvShow->getEndYear() : "" ?>">
     </div>
     <div class="form-group">
         <label for="genre">Genre :</label><br>
@@ -20,8 +25,8 @@
                value="<?= (isset($tvShow)) ? $tvShow->getGenre() : "" ?>">
     </div>
     <div class="form-group">
-        <label for="duration">Durée :</label><br>
-        <input class="form-control" type="text" id="duration" name="duration"
+        <label for="num_of_season">Nombre de saisons :</label><br>
+        <input class="form-control" type="text" id="num_of_season" name="num_of_season"
                value="<?= (isset($tvShow)) ? $tvShow->getNumOfSeason() : "" ?>">
     </div>
     <div class="form-group">

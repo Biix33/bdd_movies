@@ -10,16 +10,6 @@ class Movie extends Model
     private $year = null;
     private $duration = null;
 
-    public static function hydrate(array $data)
-    {
-        $movie = new Movie();
-        foreach ($data as $field => $value) {
-            $method = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $field)));
-            $movie->$method($value);
-        }
-        return $movie;
-    }
-
     public function setNoDvd($dvdNumber)
     {
         $dvdNumber = trim(strip_tags($dvdNumber));

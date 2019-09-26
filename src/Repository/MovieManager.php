@@ -3,8 +3,8 @@
 namespace DBMOVIE\Repository;
 
 use DBMOVIE\Model\Movie;
-use \Exception;
-use \PDO;
+use Exception;
+use PDO;
 
 
 class MovieManager extends Manager
@@ -18,31 +18,31 @@ class MovieManager extends Manager
         VALUES(?, ?, ?, ?, ?, ?, ?)';
         $pdo = self::getPDO();
         $q = $pdo->prepare($sql);
-        $q->bindValue(1, $movie->getTitle(), PDO::PARAM_STR);
-        $q->bindValue(2, $movie->getNoDvd(), PDO::PARAM_INT);
-        $q->bindValue(3, $movie->getYear(), PDO::PARAM_INT);
-        $q->bindValue(4, $movie->getGenre(), PDO::PARAM_STR);
-        $q->bindValue(5, $movie->getDuration(), PDO::PARAM_INT);
-        $q->bindValue(6, $movie->getDescribeLink(), PDO::PARAM_STR);
-        $q->bindValue(7, $movie->getMovieCode(), PDO::PARAM_STR);
+        $q->bindValue(1, $movie->getTitle(), $pdo::PARAM_STR);
+        $q->bindValue(2, $movie->getNoDvd(), $pdo::PARAM_INT);
+        $q->bindValue(3, $movie->getYear(), $pdo::PARAM_INT);
+        $q->bindValue(4, $movie->getGenre(), $pdo::PARAM_STR);
+        $q->bindValue(5, $movie->getDuration(), $pdo::PARAM_INT);
+        $q->bindValue(6, $movie->getDescribeLink(), $pdo::PARAM_STR);
+        $q->bindValue(7, $movie->getMovieCode(), $pdo::PARAM_STR);
         $q->execute();
         return $pdo->lastInsertId();
     }
 
-    public static function updateMovie(Movie $movie)
+    public static function update(Movie $movie)
     {
         $sql = "UPDATE " . self::TABLE . " 
         SET title = :title, no_dvd = :numDvd, year = :year, genre = :genre, duration = :duration, link_allocine = :link, movie_code = :code 
         WHERE id = :id";
         $q = self::getPDO()->prepare($sql);
-        $q->bindValue(':title', $movie->getTitle(), PDO::PARAM_STR);
-        $q->bindValue(':numDvd', $movie->getNoDvd(), PDO::PARAM_INT);
-        $q->bindValue(':year', $movie->getYear(), PDO::PARAM_INT);
-        $q->bindValue(':genre', $movie->getGenre(), PDO::PARAM_STR);
-        $q->bindValue(':duration', $movie->getDuration(), PDO::PARAM_INT);
-        $q->bindValue(':link', $movie->getDescribeLink(), PDO::PARAM_STR);
-        $q->bindValue(':code', $movie->getMovieCode(), PDO::PARAM_STR);
-        $q->bindValue(':id', $movie->getId(), PDO::PARAM_INT);
+        $q->bindValue(':title', $movie->getTitle(), self::getPDO()::PARAM_STR);
+        $q->bindValue(':numDvd', $movie->getNoDvd(), self::getPDO()::PARAM_INT);
+        $q->bindValue(':year', $movie->getYear(), self::getPDO()::PARAM_INT);
+        $q->bindValue(':genre', $movie->getGenre(), self::getPDO()::PARAM_STR);
+        $q->bindValue(':duration', $movie->getDuration(), self::getPDO()::PARAM_INT);
+        $q->bindValue(':link', $movie->getDescribeLink(), self::getPDO()::PARAM_STR);
+        $q->bindValue(':code', $movie->getMovieCode(), self::getPDO()::PARAM_STR);
+        $q->bindValue(':id', $movie->getId(), self::getPDO()::PARAM_INT);
         $q->execute();
 
         if ($q === false) {

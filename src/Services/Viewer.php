@@ -18,13 +18,8 @@ class Viewer
         return require_once self::TEMPLATE_BASE;
     }
 
-    public static function render404()
+    public static function render404(string $message = null)
     {
-        return require_once '../template/errors/error404.php';
-    }
-
-    public static function redirect($route)
-    {
-        return header('Location: ' . "/" . $route);
+        return require_once self::TEMPLATE_PATH.'errors/error404.php';
     }
 }

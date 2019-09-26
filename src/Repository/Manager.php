@@ -4,11 +4,13 @@
 namespace DBMOVIE\Repository;
 
 
+use DBMOVIE\Exception\NotFoundException;
+use DBMOVIE\Model\Model;
 use PDO;
 
-abstract class Manager extends Database
+abstract class Manager extends DBConnect
 {
-    public static function getMoviesPaginated($offset, $limit)
+    public static function paginatedQuery($offset, $limit)
     {
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id LIMIT ?, ?';
         $q = self::getPDO()->prepare($sql);
@@ -28,7 +30,7 @@ abstract class Manager extends Database
         return intval($count[0]);
     }
 
-    public static function findMovieById($id)
+    public static function findById($id)
     {
         $sql = "SELECT * FROM " . static::TABLE . " WHERE id = ?";
         $q = self::getPDO()->prepare($sql);
@@ -36,6 +38,9 @@ abstract class Manager extends Database
         $q->execute();
         $q->setFetchMode(PDO::FETCH_ASSOC);
         $data = $q->fetch();
+        if (!$data) {
+            throw new NotFoundException("La ressource $id n'existe pas ou n'a pas été trouvée");
+        }
         $model = static::MODEL;
         return $model::hydrate($data);
     }
@@ -48,6 +53,14 @@ abstract class Manager extends Database
         $q->execute();
         $data = $q->fetchAll(PDO::FETCH_ASSOC);
         return self::map($data);
+    }
+
+    public static function delete(Model $model)
+    {
+        $sql = "DELETE FROM " . static::TABLE . " WHERE id = :id";
+        $q = self::getPDO()->prepare($sql);
+        $q->bindValue(':id', $model->getId(), PDO::PARAM_INT);
+        $q->execute();
     }
 
     protected static function map($data)

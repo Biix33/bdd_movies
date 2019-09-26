@@ -18,24 +18,6 @@ class TvShow extends Model
     /** @var int $numOfSeason */
     private $numOfSeason;
 
-    public static function hydrate($data)
-    {
-        $tvShow = new TvShow();
-        $tvShow
-            ->setId($data['id'])
-            ->setTitle($data['title'])
-            ->setStartYear($data['start_year'])
-            ->setEndYear($data['end_year'])
-            ->setNumOfDvd($data['num_of_dvd'])
-            ->setGenre($data['genre'])
-            ->setNumOfSeason($data['num_of_season'])
-            ->setLinkAllocine($data['describe_link'])
-            ->setMovieCode($data['allocine_code'])
-            ->setUpdatedAt($data['updated_at'])
-            ->setDeletedAt($data['deleted_at']);
-        return $tvShow;
-    }
-
     /**
      * @return string
      */

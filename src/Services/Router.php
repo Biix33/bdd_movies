@@ -21,7 +21,7 @@ class Router
         ['GET', '/tv-shows', 'TvShowController#showTvShows', 'tv_shows'],
         ['GET', '/tv-show/[i:id]', 'TvShowController#tvShow', 'tv_show'],
         ['POST', '/update-tv-show/[i:id]', 'TvShowController#update', 'update_tv_show'],
-        ['GET|POST', '/add-tvshow', 'TvShowController#create', 'add_tv_show'],
+        ['GET|POST', '/add-tv-show', 'TvShowController#create', 'add_tv_show'],
         ['GET', '/search', 'SearchController#find', 'search'],
     ];
 
@@ -37,10 +37,16 @@ class Router
         }
 
         $controller = 'DBMOVIE\\Controller\\' . explode('#', $match["target"])[0];
+        $controller = new $controller;
         $method = explode('#', $match['target'])[1];
 
         $params = $match['params'] ?? null;
 
-        return $controller::$method($params);
+        return $controller->$method($params);
+    }
+
+    public static function getUrl(string $routeName, array $params = [])
+    {
+        return self::$router->generate($routeName, $params);
     }
 }

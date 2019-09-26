@@ -17,7 +17,7 @@
 <body>
     <div class="">
         <header class="jumbotron">
-            <h1 class="title text-center"><a class="btn-block" href="/home">Welcome Media Store</a></h1>
+            <h1 class="title text-center"><a class="btn-block" href="/">Welcome Media Store</a></h1>
             <?php require_once 'includes/_navbar.php'?>
         </header>
     </div>
