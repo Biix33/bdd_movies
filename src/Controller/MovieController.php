@@ -80,9 +80,8 @@ class MovieController extends AbstractController
     public function movie(array $params)
     {
         try {
-            $repo = self::$repository;
             /** @var Movie $movie */
-            $movie = $repo::findById((int)$params['id']);
+            $movie = self::$repository::findById((int)$params['id']);
             if ($movie->getMovieCode()) {
                 $movieA = $this->alloHelper->movie($movie->getMovieCode());
                 if (array_key_exists('synopsis', $movieA)) {

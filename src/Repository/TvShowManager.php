@@ -13,7 +13,7 @@ class TvShowManager extends Manager
 
     public static function add(TvShow $tvShow)
     {
-        $sql = "INSERT INTO ".self::TABLE." (title, start_year, end_year, num_of_dvd, genre, num_of_season, link_allocine, movie_code)
+        $sql = "INSERT INTO " . self::TABLE . " (title, start_year, end_year, num_of_dvd, genre, num_of_season, link_allocine, movie_code)
         VALUE (?,?,?,?,?,?,?,?)";
         $pdo = self::getPDO();
         $q = $pdo->prepare($sql);
@@ -31,8 +31,8 @@ class TvShowManager extends Manager
 
     public static function update(TvShow $tvShow)
     {
-        $sql = "UPDATE ".self::TABLE." SET(title=:title, start_year=:start_year, end_year=:end_year,";
-        $sql .= "num_of_dvd=:num_of_dvd, genre=:genre, num_of_season=:num_of_season, link_allocine=:link, movie_code=:code)";
+        $sql = "UPDATE " . self::TABLE . " SET title=:title, start_year=:start_year, end_year=:end_year,";
+        $sql .= " num_of_dvd=:num_of_dvd, genre=:genre, num_of_season=:num_of_season, link_allocine=:link, movie_code=:code";
         $sql .= " WHERE id = :id";
         $pdo = self::getPDO();
         $q = $pdo->prepare($sql);

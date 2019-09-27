@@ -21,40 +21,34 @@ class TvShowController extends AbstractController
      */
     public function showTvShows()
     {
-        $pagination = Utils::paginated($this->repository);
+        $pagination = Utils::paginated(self::$repository);
         return Viewer::render('movies/index.movies', [
             'tvShows' => $pagination['elements'],
             'paginated' => $pagination
         ]);
     }
 
+    public function create()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') return Viewer::render('tvshows/create.tvshow');
+
+        $tvShow = TvShow::hydrate($_POST);
+        $tvShow = $this->findOnAlloCine($tvShow);
+        $newTvShow = self::$repository::add($tvShow);
+        return $this->redirectTo($this->router::getUrl(self::SINGLE_PAGE, ['id' => $newTvShow]));
+    }
+
     public function tvShow(array $params)
     {
         try {
-            $repo = self::$repository;
             /** @var TvShow $tvShow */
-            $tvShow = $repo::findById($params['id']);
-            /*if (!$tvShow->getMovieCode()) {
-                $alloResult = $this->alloHelper->search($tvShow->getTitle())['tvseries'];
-                foreach ($alloResult as $result) {
-                    if (
-                        $result['title'] === $tvShow->getTitle() ||
-                        $result['OriginalTitle'] === $tvShow->getTitle()
-                    ) {
-                        $tvShow->setMovieCode($result['code']);
-                        $tvShow->setImageUrl($result['poster']['href']);
-                    }
-                }
-            } else {
-                $alloResult = $this->alloHelper->tvserie($tvShow->getMovieCode());
-                if ($alloResult && key_exists('synopsis', $alloResult)){
-                    $tvShow->setImageUrl($alloResult['poster']->url());
-                    $tvShow->setSynopsis($alloResult['synopsis']);
-                }
-            }*/
+            $tvShow = self::$repository::findById($params['id']);
+            $tvShow = self::findOnAlloCine($tvShow);
         } catch (NotFoundException $e) {
             http_response_code(404);
             return Viewer::render404($e->getMessage());
+        } catch (\ErrorException $e) {
+            throw new \Exception($e->getMessage());
         }
         return Viewer::render('tvshows/show.tvshow', ['tvShow' => $tvShow]);
     }

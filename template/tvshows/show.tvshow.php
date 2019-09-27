@@ -9,9 +9,10 @@
         <h3 class="text-uppercase"><?= $tvShow->getTitle() ?></h3>
         <ul>
             <li><span class="text-info">DVD :</span> <?= $tvShow->getNumOfDvd() ?></li>
-            <li>Année : <?= $tvShow->getStartYear() ?></li>
+            <li>Année de début : <?= $tvShow->getStartYear() ?></li>
+            <li>Année de fin : <?= $tvShow->getEndYear() ?></li>
             <li>Genre : <?= $tvShow->getGenre() ?></li>
-            <li>Durée : <?= $tvShow->getNumOfSeason() ?></li>
+            <li>Saisons : <?= $tvShow->getNumOfSeason() ?></li>
         </ul>
     </div>
     <div class="col-md-12">
@@ -26,7 +27,7 @@
         <?php else: ?>
             <p>Pas encore de descriptif de disponible !</p>
         <?php endif ?>
-        <a href="movies" class="btn btn-primary">Retour à la liste de films</a>
+        <a href="/movies" class="btn btn-primary">Retour à la liste de films</a>
         <button type="button" name="button" id="btn-update" class="btn btn-warning">Mettre à jour</button>
     </div>
 </div>

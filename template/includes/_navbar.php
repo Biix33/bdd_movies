@@ -11,7 +11,7 @@
             <a data-toggle="dropdown" class="" href="#">Séries <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="/tv-shows">Toutes</a></li>
-                <li><a href="/add-tvshow">Ajouter</a></li>
+                <li><a href="/add-tv-show">Ajouter</a></li>
             </ul>
         </li>
     </ul>

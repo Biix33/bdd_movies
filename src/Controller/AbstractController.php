@@ -28,12 +28,10 @@ abstract class AbstractController
 
         try {
             $model = static::$model;
-            $movie = $model::hydrate($_POST);
-            if (empty($movie->getMovieCode()) || empty($movie->getDescribeLink())) {
-                $movie = self::findOnAlloCine($movie);
-            }
+            $object = $model::hydrate($_POST);
+            $object = self::findOnAlloCine($object);
             $repository = static::$repository;
-            $repository::update($movie);
+            $repository::update($object);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -55,25 +53,38 @@ abstract class AbstractController
 
     protected function findOnAlloCine(Model $model)
     {
-        $type = $model instanceof TvShow ? 'tvseries' : 'movie';
-        $results = $this->alloHelper->search($model->getTitle(), 1, 10, true, [$type]);
-        foreach ($results as $result) {
-            if ($result['title'] == $model->getTitle() || $result['OriginalTitle'] == $model->getTitle()) {
-                $model->setMovieCode($result['code']);
-            } else {
-                $model->setMovieCode($_POST['movie_code']);
+        $type = $model instanceof TvShow ? 'tvserie' : 'movie';
+        if (empty($model->getMovieCode())) {
+            $type = ($type === 'tvserie') ? $type . 's' : $type;
+            $results = $this->alloHelper->search($model->getTitle(), 1, 10, true, [$type]);
+            foreach ($results[$type] as $result) {
+                if (array_key_exists('title', $result)) {
+                    if ($result['title'] == $model->getTitle()) {
+                        $model->setMovieCode($result['code']);
+                    }
+                } elseif (array_key_exists('originalTitle', $result)) {
+                    if ($result['originalTitle'] == $model->getTitle()) {
+                        $model->setMovieCode($result['code']);
+                    }
+                } else {
+                    $model->setMovieCode($model->getMovieCode());
+                }
             }
         }
-        if (!empty($model->getMovieCode())) {
-            $findWithCode = $this->alloHelper->movie($model->getMovieCode());
+        $type = ($type === 'tvseries') ? 'tvserie' : $type;
+        $results = $this->alloHelper->$type($model->getMovieCode());
+        $type = ($type === 'tvserie') ? $type . 's' : $type;
+        if ($type === 'tvserie' || $type === 'tvseries') {
             $model
-                ->setTitle($model->getTitle())
-                ->setNoDvd($model->getNoDvd())
-                ->setYear($findWithCode['productionYear'])
-                ->setGenre($findWithCode['genre'][0]['$'])
-                ->setDuration($findWithCode['runtime'] / 60)
-                ->setLinkAllocine($findWithCode['link'][0]['href'])
-                ->setMovieCode($model->getMovieCode());
+                ->setStartYear($results[$type]['yearStart'] ?? '')
+                ->setEndYear($results[$type]['yearEnd'] ?? '')
+                ->setNumOfSeason($results[$type]['seasonCount'] ?? '')
+                ->setSynopsis($results[$type]['synopsis'] ?? '')
+                ->setImageUrl($results[$type]['poster']['href'] ?? '');
+        } else {
+            $model
+                ->setSynopsis($results['synopsis'])
+                ->setImageUrl($results['poster']->url());
         }
         return $model;
     }
