@@ -1,19 +1,23 @@
 {
-    "name": "byo/bdd-films",
-    "description": "Handler movies bdd",
-    "authors": [
-        {
-            "name": "Biix33",
-            "email": "ybienvenu@mail.welcome-int.xyz"
-        }
-    ],
-    "require": {
-        "php": "^7.1",
-      "ext-pdo": "*",
-        "vlucas/phpdotenv": "^3.6",
-        "altorouter/altorouter": "^1.2"
-    },
-    "autoload": {
-        "psr-4": {"DBMOVIE\\": "src/"}
+  "name": "byo/bdd-films",
+  "license": "proprietary",
+  "version": "1.0.1",
+  "description": "Handler movies bdd",
+  "authors": [
+    {
+      "name": "Biix33",
+      "email": "ybienvenu@mail.welcome-int.xyz"
     }
+  ],
+  "require": {
+    "php": "^7.1",
+    "ext-pdo": "*",
+    "vlucas/phpdotenv": "^3.6",
+    "altorouter/altorouter": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "DBMOVIE\\": "src/"
+    }
+  }
 }

@@ -7,7 +7,7 @@ namespace DBMOVIE\Services;
 class Viewer
 {
     const TEMPLATE_PATH = '../template/';
-    const TEMPLATE_BASE = '../template/template.php';
+    const TEMPLATE_BASE = '../template/base.html.php';
 
     public static function render($view, $params = [])
     {

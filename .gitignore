@@ -2,4 +2,10 @@
 .env
 test.html
 .idea
+.idea/
 .vscode
+.vscode/
+/public/css/boostrap.css
+/public/js/boostrap.js
+/public/js/boostrap-bundle.js
+/public/js/jquery-3.4.1.js
