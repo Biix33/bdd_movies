@@ -57,7 +57,7 @@ abstract class Manager extends DBConnect
     public static function findByTitle($searchWord)
     {
         $sql = "SELECT * FROM " . static::TABLE . " WHERE title LIKE :searchq ORDER BY title ASC";
-        $q = parent::getPDO()->prepare($sql);
+        $q = self::getPDO()->prepare($sql);
         $q->bindValue(':searchq', '%' . $searchWord . '%', PDO::PARAM_STR);
         $q->execute();
         $data = $q->fetchAll(PDO::FETCH_ASSOC);

@@ -8,11 +8,11 @@ use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Repository\TvShowManager;
 use DBMOVIE\Services\Viewer;
 
-class SearchController
+class SearchController extends AbstractController
 {
-    public static function find()
+    public function find()
     {
-        if (!isset($_GET['q'])) return Viewer::redirect('home');
+        if (!isset($_GET['q'])) return $this->redirectTo($this->router::getUrl('home'));
 
         $moviesFound = MovieManager::findByTitle($_GET['q']);
         $tvShowsFound = TvShowManager::findByTitle($_GET['q']);

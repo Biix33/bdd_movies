@@ -16,7 +16,7 @@
         </li>
     </ul>
 
-    <form action="/search/" class="navbar-form navbar-right inline-form" method="get">
+    <form action="/search" class="navbar-form navbar-right inline-form" method="get">
         <div class="form-group">
             <label for="q"></label>
             <input class="input-sm form-control" id="q" name="q" placeholder="Rechercher" type="search">
