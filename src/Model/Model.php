@@ -207,7 +207,7 @@ abstract class Model
      * @param string|null $imageUrl
      * @return Model
      */
-    public function setImageUrl(string $imageUrl): Model
+    public function setImageUrl(?string $imageUrl): Model
     {
         $this->imageUrl = $imageUrl;
         return $this;

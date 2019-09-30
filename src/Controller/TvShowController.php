@@ -33,7 +33,7 @@ class TvShowController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return Viewer::render('tvshows/create.tvshow');
 
         $tvShow = TvShow::hydrate($_POST);
-        $tvShow = $this->findOnAlloCine($tvShow);
+        $tvShow = self::getSynopsisAndPoster($tvShow);
         $newTvShow = self::$repository::add($tvShow);
         return $this->redirectTo($this->router::getUrl(self::SINGLE_PAGE, ['id' => $newTvShow]));
     }
@@ -43,12 +43,9 @@ class TvShowController extends AbstractController
         try {
             /** @var TvShow $tvShow */
             $tvShow = self::$repository::findById($params['id']);
-            $tvShow = self::findOnAlloCine($tvShow);
         } catch (NotFoundException $e) {
             http_response_code(404);
             return Viewer::render404($e->getMessage());
-        } catch (\ErrorException $e) {
-            throw new \Exception($e->getMessage());
         }
         return Viewer::render('tvshows/show.tvshow', ['tvShow' => $tvShow]);
     }

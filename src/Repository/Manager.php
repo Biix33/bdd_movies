@@ -63,6 +63,52 @@ abstract class Manager extends DBConnect
         $q->execute();
     }
 
+    public static function findWithLink()
+    {
+        $sql = "SELECT * FROM " . static::TABLE . " WHERE link_allocine LIKE '%allocine%' AND movie_code IS NULL";
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
+        return self::map($data);
+    }
+
+    public static function findWithoutLink()
+    {
+        $sql = "SELECT * FROM " . static::TABLE . " WHERE link_allocine NOT LIKE '%http%' LIMIT 100";
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
+        return self::map($data);
+    }
+
+    /**
+     * Find movies or tv series without link
+     * and code not null
+     * @return array
+     */
+    public static function findWithoutLinkAndCodeNotNull()
+    {
+        $sql = "SELECT * FROM " . static::TABLE . "
+         WHERE link_allocine NOT LIKE '%http%' AND movie_code IS NOT NULL LIMIT 100";
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(PDO::FETCH_ASSOC);
+        return self::map($data);
+    }
+
+    /**
+     * Update tv series's or movie's code
+     * @param Model $model
+     */
+    public static function updateCode(Model $model)
+    {
+        $sql = "UPDATE " . static::TABLE . " SET movie_code=:code WHERE id=:id";
+        $q = self::getPDO()->prepare($sql);
+        $q->bindValue(':code', $model->getMovieCode(), PDO::PARAM_STR);
+        $q->bindValue(':id', $model->getId(), PDO::PARAM_INT);
+        $q->execute();
+    }
+
     protected static function map($data)
     {
         $movies = [];

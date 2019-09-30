@@ -32,7 +32,7 @@ class MovieController extends AbstractController
         }
         exit;*/
         $helper = new AlloHelper();
-        $movies = MovieManager::findMovieWithoutLink();
+        $movies = MovieManager::findWithoutLink();
         foreach ($movies as $movie) {
             $results = $helper->search($movie->getTitle(), 1, 10, true, ['movie']);
             if (isset($results['movie'])) {
@@ -43,7 +43,7 @@ class MovieController extends AbstractController
         }
         exit;
 
-        $moviesWithCode = MovieManager::findMovieWithoutLinkCodeNotNull();
+        $moviesWithCode = MovieManager::findWithoutLinkAndCodeNotNull();
         foreach ($moviesWithCode as $item) {
             if (!empty($item->getCode())) {
                 $foundWithCode = $helper->movie($item->getCode());
@@ -82,15 +82,6 @@ class MovieController extends AbstractController
         try {
             /** @var Movie $movie */
             $movie = self::$repository::findById((int)$params['id']);
-            if ($movie->getMovieCode()) {
-                $movieA = $this->alloHelper->movie($movie->getMovieCode());
-                if (array_key_exists('synopsis', $movieA)) {
-                    $movie->setSynopsis($movieA['synopsis']);
-                }
-                if (array_key_exists('poster', $movieA)) {
-                    $movie->setImageUrl($movieA['poster']->url());
-                }
-            }
         } catch (NotFoundException $e) {
             http_response_code(404);
             return Viewer::render404($e->getMessage());
@@ -101,31 +92,13 @@ class MovieController extends AbstractController
         ]);
     }
 
-    /*public function update(array $params)
-    {
-        if ($_SERVER['REQUEST_METHOD'] == "GET") {
-            return $this->redirectTo($this->router::getUrl('movie', ['id' => $params['id']]));
-        }
-
-        try {
-            $movie = Movie::hydrate($_POST);
-            if (empty($movie->getMovieCode()) || empty($movie->getDescribeLink())) {
-                $movie = self::findOnAlloCine($movie);
-            }
-            MovieManager::updateMovie($movie);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-        return $this->redirectTo($this->router::getUrl('movie', ['id' => $params['id']]));
-    }*/
-
     public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] === "GET") return Viewer::render('movies/create.movie');
 
         /** @var Movie $movie */
         $movie = Movie::hydrate($_POST);
-        $movie = $this->findOnAlloCine($movie);
+        $movie = $this->getSynopsisAndPoster($movie);
         $movieId = MovieManager::add($movie);
         return $this->redirectTo($this->router::getUrl('movie', ['id' => $movieId]));
     }

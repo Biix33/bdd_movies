@@ -29,7 +29,7 @@ abstract class AbstractController
         try {
             $model = static::$model;
             $object = $model::hydrate($_POST);
-            $object = self::findOnAlloCine($object);
+            $object = self::getSynopsisAndPoster($object);
             $repository = static::$repository;
             $repository::update($object);
         } catch (Exception $e) {
@@ -51,11 +51,10 @@ abstract class AbstractController
         return false;
     }
 
-    protected function findOnAlloCine(Model $model)
+    protected function getSynopsisAndPoster(Model $model)
     {
-        $type = $model instanceof TvShow ? 'tvserie' : 'movie';
+        $type = $model instanceof TvShow ? 'tvseries' : 'movie';
         if (empty($model->getMovieCode())) {
-            $type = ($type === 'tvserie') ? $type . 's' : $type;
             $results = $this->alloHelper->search($model->getTitle(), 1, 10, true, [$type]);
             foreach ($results[$type] as $result) {
                 if (array_key_exists('title', $result)) {
@@ -80,9 +79,15 @@ abstract class AbstractController
                 ->setEndYear($results[$type]['yearEnd'] ?? '')
                 ->setNumOfSeason($results[$type]['seasonCount'] ?? '')
                 ->setSynopsis($results[$type]['synopsis'] ?? '')
-                ->setImageUrl($results[$type]['poster']['href'] ?? '');
+                ->setImageUrl($results[$type]['poster']['href'] ?? '')
+                ->setLinkAllocine('http://www.allocine.fr/series/ficheserie_gen_cserie=' . $model->getMovieCode() . '.html')
+                ->setGenre($results[$type]['genre'][0]['$'] ?? '');
         } else {
             $model
+                ->setGenre($results['genre'][0]['$'] ?? '')
+                ->setDuration($results['runtime'] / 60)
+                ->setLinkAllocine($results['link'][0]['href'] ?? '')
+                ->setYear($results['productionYear'])
                 ->setSynopsis($results['synopsis'])
                 ->setImageUrl($results['poster']->url());
         }

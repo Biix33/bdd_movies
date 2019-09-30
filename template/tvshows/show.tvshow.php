@@ -27,7 +27,7 @@
         <?php else: ?>
             <p>Pas encore de descriptif de disponible !</p>
         <?php endif ?>
-        <a href="/movies" class="btn btn-primary">Retour à la liste de films</a>
+        <a href="<?= $_SERVER['HTTP_REFERER'] ?? '/tv-shows' ?>" class="btn btn-primary">Retour à la liste</a>
         <button type="button" name="button" id="btn-update" class="btn btn-warning">Mettre à jour</button>
     </div>
 </div>

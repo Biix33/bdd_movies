@@ -13,8 +13,9 @@ class TvShowManager extends Manager
 
     public static function add(TvShow $tvShow)
     {
-        $sql = "INSERT INTO " . self::TABLE . " (title, start_year, end_year, num_of_dvd, genre, num_of_season, link_allocine, movie_code)
-        VALUE (?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO " . self::TABLE . " 
+        (title, start_year, end_year, num_of_dvd, genre, num_of_season, link_allocine, movie_code, synopsis, image_url)
+        VALUE (?,?,?,?,?,?,?,?,?,?)";
         $pdo = self::getPDO();
         $q = $pdo->prepare($sql);
         $q->bindValue(1, $tvShow->getTitle(), $pdo::PARAM_STR);
@@ -25,6 +26,8 @@ class TvShowManager extends Manager
         $q->bindValue(6, $tvShow->getNumOfSeason(), $pdo::PARAM_INT);
         $q->bindValue(7, $tvShow->getDescribeLink(), $pdo::PARAM_STR);
         $q->bindValue(8, $tvShow->getMovieCode(), $pdo::PARAM_STR);
+        $q->bindValue(9, $tvShow->getSynopsis(), $pdo::PARAM_STR);
+        $q->bindValue(10, $tvShow->getImageUrl(), $pdo::PARAM_STR);
         $q->execute();
         return $pdo->lastInsertId();
     }
@@ -32,7 +35,8 @@ class TvShowManager extends Manager
     public static function update(TvShow $tvShow)
     {
         $sql = "UPDATE " . self::TABLE . " SET title=:title, start_year=:start_year, end_year=:end_year,";
-        $sql .= " num_of_dvd=:num_of_dvd, genre=:genre, num_of_season=:num_of_season, link_allocine=:link, movie_code=:code";
+        $sql .= " num_of_dvd=:num_of_dvd, genre=:genre, num_of_season=:num_of_season,";
+        $sql .= " link_allocine=:link, movie_code=:code, synopsis=:synopsis, image_url=:image_url";
         $sql .= " WHERE id = :id";
         $pdo = self::getPDO();
         $q = $pdo->prepare($sql);
@@ -45,6 +49,8 @@ class TvShowManager extends Manager
         $q->bindValue(':num_of_season', $tvShow->getNumOfSeason(), $pdo::PARAM_INT);
         $q->bindValue(':link', $tvShow->getDescribeLink(), $pdo::PARAM_STR);
         $q->bindValue(':code', $tvShow->getMovieCode(), $pdo::PARAM_STR);
+        $q->bindValue(':synopsis', $tvShow->getSynopsis(), $pdo::PARAM_STR);
+        $q->bindValue(':image_url', $tvShow->getImageUrl(), $pdo::PARAM_STR);
         $q->execute();
     }
 }

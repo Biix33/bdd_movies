@@ -6,8 +6,11 @@
       <change beforePath="$PROJECT_DIR$/src/Controller/AbstractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AbstractController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TvShowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TvShowController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/MovieManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MovieManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/TvShowManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TvShowManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/includes/_navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/includes/_navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/movies/show.movie.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/movies/show.movie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/tvshows/_form.tvShow.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/tvshows/_form.tvShow.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/tvshows/show.tvshow.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/tvshows/show.tvshow.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +46,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-522">
-                  <caret line="82" selection-start-line="82" selection-end-line="82" />
+                <state relative-caret-position="606">
+                  <caret line="93" selection-start-line="93" selection-end-line="93" />
                   <folding>
                     <element signature="e#38#78#0#PHP" expanded="true" />
                   </folding>
@@ -52,11 +55,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Repository/MovieManager.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="744">
-                  <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+                <state relative-caret-position="441">
+                  <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
                   <folding>
                     <element signature="e#38#62#0#PHP" expanded="true" />
                   </folding>
@@ -65,19 +68,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/template/movies/_form.movie.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="87" selection-start-column="87" selection-end-column="87" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Controller/AbstractController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1038">
-                  <caret line="55" selection-start-line="55" selection-end-line="55" />
+                <state relative-caret-position="678">
+                  <caret line="95" selection-start-line="95" selection-end-line="95" />
                   <folding>
                     <element signature="e#40#64#0#PHP" expanded="true" />
                   </folding>
@@ -92,8 +86,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Controller/TvShowController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1200">
-                  <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+                <state relative-caret-position="558">
+                  <caret line="46" column="36" lean-forward="true" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
                   <folding>
                     <element signature="e#40#80#0#PHP" expanded="true" />
                   </folding>
@@ -102,19 +96,19 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Repository/TvShowManager.php">
+            <entry file="file://$PROJECT_DIR$/template/tvshows/_form.tvShow.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="668">
-                  <caret line="48" selection-start-line="48" selection-end-line="48" />
+                <state relative-caret-position="-306">
+                  <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Model/TvShow.php">
+            <entry file="file://$PROJECT_DIR$/src/Repository/TvShowManager.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1920">
-                  <caret line="86" column="34" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="34" />
+                <state relative-caret-position="924">
+                  <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
                 </state>
               </provider>
             </entry>
@@ -170,7 +164,6 @@
         <option value="$PROJECT_DIR$/template/tvshows/create.tvshow.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Controller/SearchController.php" />
-        <option value="$PROJECT_DIR$/template/movies/show.movie.php" />
         <option value="$PROJECT_DIR$/public/js/display_update_form.js" />
         <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
@@ -188,16 +181,17 @@
         <option value="$PROJECT_DIR$/src/Services/Viewer.php" />
         <option value="$PROJECT_DIR$/src/Repository/Manager.php" />
         <option value="$PROJECT_DIR$/src/Utils/api_allocine_helper/AlloHelper.php" />
-        <option value="$PROJECT_DIR$/src/Model/Model.php" />
         <option value="$PROJECT_DIR$/src/Services/Router.php" />
-        <option value="$PROJECT_DIR$/template/tvshows/_form.tvShow.php" />
-        <option value="$PROJECT_DIR$/src/Repository/MovieManager.php" />
-        <option value="$PROJECT_DIR$/src/Repository/TvShowManager.php" />
-        <option value="$PROJECT_DIR$/src/Controller/MovieController.php" />
         <option value="$PROJECT_DIR$/template/includes/_navbar.php" />
         <option value="$PROJECT_DIR$/template/tvshows/show.tvshow.php" />
-        <option value="$PROJECT_DIR$/src/Controller/AbstractController.php" />
+        <option value="$PROJECT_DIR$/template/movies/show.movie.php" />
+        <option value="$PROJECT_DIR$/src/Model/Model.php" />
         <option value="$PROJECT_DIR$/src/Controller/TvShowController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/TvShowManager.php" />
+        <option value="$PROJECT_DIR$/template/tvshows/_form.tvShow.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AbstractController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/MovieController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/MovieManager.php" />
       </list>
     </option>
   </component>
@@ -240,12 +234,30 @@
               <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
               <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
               <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
               <item name="template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="movies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bdd-films" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bdd-films" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="tvshows" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -314,17 +326,20 @@
       <workItem from="1569391906785" duration="2358000" />
       <workItem from="1569477610745" duration="24634000" />
       <workItem from="1569532627204" duration="36000" />
-      <workItem from="1569573935746" duration="5418000" />
+      <workItem from="1569573935746" duration="7721000" />
+      <workItem from="1569792649233" duration="1468000" />
+      <workItem from="1569823206819" duration="4892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94801000" />
+    <option name="totallyTimeSpent" value="103464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14872068" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.14818764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -510,13 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Movie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/DBConnect.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -562,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/movies/show.movie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/Manager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1032">
@@ -586,44 +587,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="209" column="31" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template/movies/_form.movie.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="87" selection-start-column="87" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/tvshows/_form.tvShow.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="23" column="70" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/MovieManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-          <folding>
-            <element signature="e#38#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-522">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="e#38#78#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -650,42 +617,90 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/tvshows/show.tvshow.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        <state relative-caret-position="283">
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/movies/show.movie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="31" column="104" selection-start-line="31" selection-start-column="104" selection-end-line="31" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="205" column="7" lean-forward="true" selection-start-line="205" selection-start-column="7" selection-end-line="205" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Movie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="29" column="31" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/tvshows/_form.tvShow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306">
+          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/TvShow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-882">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AbstractController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1038">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="678">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
           <folding>
             <element signature="e#40#64#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TvShowManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/TvShowController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
+        <state relative-caret-position="558">
+          <caret line="46" column="36" lean-forward="true" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
           <folding>
             <element signature="e#40#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/TvShow.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="34" />
+        <state relative-caret-position="606">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="e#38#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/TvShowManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/MovieManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+          <folding>
+            <element signature="e#38#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
