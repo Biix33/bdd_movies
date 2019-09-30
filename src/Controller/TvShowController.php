@@ -6,14 +6,16 @@ namespace DBMOVIE\Controller;
 
 use DBMOVIE\Exception\NotFoundException;
 use DBMOVIE\Model\TvShow;
-use DBMOVIE\Utils\Utils;
 use DBMOVIE\Repository\TvShowManager;
 use DBMOVIE\Services\Viewer;
+use DBMOVIE\Utils\Utils;
 
 class TvShowController extends AbstractController
 {
     const SINGLE_PAGE = 'tv_show';
+    /** @var TvShowManager */
     protected static $repository = TvShowManager::class;
+    /** @var TvShow */
     protected static $model = TvShow::class;
 
     /**
@@ -32,7 +34,7 @@ class TvShowController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return Viewer::render('tvshows/create.tvshow');
 
-        $tvShow = TvShow::hydrate($_POST);
+        $tvShow = self::$model::hydrate($_POST);
         $tvShow = self::getSynopsisAndPoster($tvShow);
         $newTvShow = self::$repository::add($tvShow);
         return $this->redirectTo($this->router::getUrl(self::SINGLE_PAGE, ['id' => $newTvShow]));

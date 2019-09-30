@@ -10,6 +10,15 @@ use PDO;
 
 abstract class Manager extends DBConnect
 {
+    public static function findAll()
+    {
+        $sql = "SELECT * FROM " . static::TABLE;
+        $q = self::getPDO()->query($sql);
+        $q->execute();
+        $data = $q->fetchAll(self::getPDO()::FETCH_ASSOC);
+        return self::map($data);
+    }
+
     public static function paginatedQuery($offset, $limit)
     {
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id LIMIT ?, ?';

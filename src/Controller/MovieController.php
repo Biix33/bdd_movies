@@ -6,61 +6,15 @@ use DBMOVIE\Exception\NotFoundException;
 use DBMOVIE\Model\Movie;
 use DBMOVIE\Repository\MovieManager;
 use DBMOVIE\Services\Viewer;
-use DBMOVIE\Utils\api_allocine_helper\AlloHelper;
 use DBMOVIE\Utils\Utils;
 
 class MovieController extends AbstractController
 {
     const SINGLE_PAGE = 'movie';
+    /** @var MovieManager */
     protected static $repository = MovieManager::class;
+    /** @var Movie */
     protected static $model = Movie::class;
-
-    /**
-     * Update movie link with allocine helper
-     */
-    public static function findLink()
-    {
-        /*$movies = MovieManager::findMovieWithLink();
-        $nbPages = 1;
-        foreach ($movies as $movie) {
-            $split1 = explode('=', $movie->getDescribeLink());
-            $split2 = explode('.', $split1[1]);
-            $code = $split2[0];
-            $movie->setCode($code);
-            MovieManager::updateCode($movie);
-            var_dump($movie);
-        }
-        exit;*/
-        $helper = new AlloHelper();
-        $movies = MovieManager::findWithoutLink();
-        foreach ($movies as $movie) {
-            $results = $helper->search($movie->getTitle(), 1, 10, true, ['movie']);
-            if (isset($results['movie'])) {
-                $movie->setCode($results['movie'][0]['code']);
-                var_dump($movie);
-                MovieManager::updateCode($movie);
-            }
-        }
-        exit;
-
-        $moviesWithCode = MovieManager::findWithoutLinkAndCodeNotNull();
-        foreach ($moviesWithCode as $item) {
-            if (!empty($item->getCode())) {
-                $foundWithCode = $helper->movie($item->getCode());
-                $item
-                    ->setTitle($item->getTitle())
-                    ->setNumDvd($item->getNoDvd())
-                    ->setYear($foundWithCode['productionYear'])
-                    ->setGenre($foundWithCode['genre'][0]['$'])
-                    ->setDuration($foundWithCode['runtime'] / 60)
-                    ->setDescribeLink($foundWithCode['link'][0]['href'])
-                    ->setCode($item->getCode());
-                var_dump($item);
-                MovieManager::update($item);
-            }
-        }
-        exit();
-    }
 
     public function showHome()
     {
@@ -98,8 +52,8 @@ class MovieController extends AbstractController
 
         /** @var Movie $movie */
         $movie = Movie::hydrate($_POST);
-        $movie = $this->getSynopsisAndPoster($movie);
-        $movieId = MovieManager::add($movie);
+        $movie = self::getSynopsisAndPoster($movie);
+        $movieId = self::$repository::add($movie);
         return $this->redirectTo($this->router::getUrl('movie', ['id' => $movieId]));
     }
 }

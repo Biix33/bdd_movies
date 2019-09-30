@@ -2,8 +2,8 @@
     <thead>
     <tr>
         <th>Titre</th>
-        <th>Numéro ou Nb DVD</th>
-        <th>Année ou Saisons</th>
+        <th>Numéro du DVD</th>
+        <th>Année</th>
         <th>Genre</th>
     </tr>
     </thead>
@@ -12,9 +12,9 @@
     <?php foreach ($movies as $movie): ?>
         <tr>
             <td>
-                <a href="/movie/<?= $movie->getId()?>"><?= ucwords($movie->getTitle()) ?></a>
+                <a href="<?= '/movie/' . $movie->getId() ?>"><?= ucwords($movie->getTitle()) ?></a>
             </td>
-            <td style="text-align: center"><?= $movie->getNoDvd() ?></td>
+            <td class="text-center"><?= $movie->getNoDvd() ?></td>
             <td><?= $movie->getYear() ?></td>
             <td><?= $movie->getGenre() ?></td>
         </tr>
