@@ -37,7 +37,9 @@ class TvShowController extends AbstractController
         $tvShow = self::$model::hydrate($_POST);
         $tvShow = self::getSynopsisAndPoster($tvShow);
         $newTvShow = self::$repository::add($tvShow);
-        return $this->redirectTo($this->router::getUrl(self::SINGLE_PAGE, ['id' => $newTvShow]));
+        return $this->redirectToRoute(self::SINGLE_PAGE, [
+                'id' => $newTvShow
+            ]);
     }
 
     public function tvShow(array $params)
@@ -49,6 +51,8 @@ class TvShowController extends AbstractController
             http_response_code(404);
             return Viewer::render404($e->getMessage());
         }
-        return Viewer::render('tvshows/show.tvshow', ['tvShow' => $tvShow]);
+        return Viewer::render('tvshows/show.tvshow', [
+            'tvShow' => $tvShow
+        ]);
     }
 }

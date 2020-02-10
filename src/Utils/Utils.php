@@ -2,9 +2,15 @@
 namespace DBMOVIE\Utils;
 
 
+use DBMOVIE\Repository\Manager;
+
 class Utils
 {
-    public static function paginated(string $repository)
+    /**
+     * @param Manager|string $repository
+     * @return array
+     */
+    public static function paginated($repository)
     {
         $currentPage = $_GET['p'] ?? 1;
         $limit = $_GET['nbM'] ?? 15;

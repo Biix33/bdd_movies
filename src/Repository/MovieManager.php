@@ -52,7 +52,7 @@ class MovieManager extends Manager
         $q->execute();
 
         if ($q === false) {
-            throw new Exception('Un erreur c\'est produite lors de la mise à jour');
+            throw new Exception('Un erreur s\'est produite lors de la mise à jour');
         }
     }
 }

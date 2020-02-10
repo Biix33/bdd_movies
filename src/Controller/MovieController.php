@@ -54,6 +54,9 @@ class MovieController extends AbstractController
         $movie = Movie::hydrate($_POST);
         $movie = self::getSynopsisAndPoster($movie);
         $movieId = self::$repository::add($movie);
-        return $this->redirectTo($this->router::getUrl('movie', ['id' => $movieId]));
+        return $this->redirectToRoute(self::SINGLE_PAGE, [
+                'id' => $movieId
+            ]
+        );
     }
 }

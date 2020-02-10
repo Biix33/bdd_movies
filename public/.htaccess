@@ -3,5 +3,6 @@ Options +FollowSymlinks
     RewriteEngine On
     # RewriteRule ^home/$ /index.php
     RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{HTTP_HOST} ^bdd-films
     RewriteRule ^(.+)$ index.php [QSA,L]
 </IfModule>

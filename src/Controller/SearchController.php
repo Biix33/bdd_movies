@@ -12,7 +12,7 @@ class SearchController extends AbstractController
 {
     public function find()
     {
-        if (!isset($_GET['q'])) return $this->redirectTo($this->router::getUrl('home'));
+        if (!isset($_GET['q'])) return $this->redirectToRoute($this->router::getUrl('home'));
 
         $moviesFound = MovieManager::findByTitle($_GET['q']);
         $tvShowsFound = TvShowManager::findByTitle($_GET['q']);

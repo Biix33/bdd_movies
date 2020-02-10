@@ -29,7 +29,7 @@ abstract class AbstractController
     public function update(array $params)
     {
         if ($_SERVER['REQUEST_METHOD'] == "GET") {
-            return $this->redirectTo($this->router::getUrl(static::SINGLE_PAGE, ['id' => $params['id']]));
+            return $this->redirectToRoute($this->router::getUrl(static::SINGLE_PAGE, ['id' => $params['id']]));
         }
 
         try {
@@ -39,17 +39,19 @@ abstract class AbstractController
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return $this->redirectTo($this->router::getUrl(static::SINGLE_PAGE, ['id' => $params['id']]));
+        return $this->redirectToRoute(static::SINGLE_PAGE, ['id' => $params['id']]);
     }
 
     /**
      * This method redirect to URL generate from router
-     * @param string $route
+     * @param string $routeName
+     * @param array $params
      * @return bool
      */
-    protected function redirectTo(string $route)
+    protected function redirectToRoute(string $routeName, array $params = [])
     {
-        if (header("Location: $route")) {
+        $url = $this->router::getUrl($routeName, $params);
+        if (header("Location: $url")) {
             return true;
         }
         return false;
